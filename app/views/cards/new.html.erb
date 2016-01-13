@@ -1,0 +1,7 @@
+<p>New card</p>
+  <%= simple_form_for @card do |f| %>
+    <%= f.input :original_text%>
+    <%= f.input :translated_text%>
+    <%= f.button :submit%> 
+  <% end %>
+
