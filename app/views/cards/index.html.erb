@@ -16,8 +16,10 @@
       <td><%= card.translated_text %></td>
       <td><%= card.review_date.strftime("%d/%m/%Y")%></td>
       <td>
-        <%=link_to 'Редактировать', "#"%>
-        <%=link_to 'Удалить',"#"%>  
+        <%=link_to 'Редактировать', edit_card_path(card)%>
+        <%=link_to 'Удалить',card_path(card),
+           method: :delete,
+           data: { confirm: "Are you sure?" } %>  
       </td>
     </tr>
   <% end %>
