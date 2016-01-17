@@ -1,0 +1,26 @@
+<% if have_cards? %>
+  <div class = "text-center">
+    <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+    <h1><%= card.original_text %></h1>
+    <%= simple_form_for :card, :url => {:action => "check", :controller => "cards"} do |f| %>
+      <%= f.hidden_field :id, :value => card.id %>
+      <%= f.hidden_field :translated_text, :value => card.translated_text %>
+  
+      <%= text_field_tag :answer, 
+  	                 nil , 
+                         placeholder: 'Введите перевод...',
+                         autocomplete: "off",
+                         class:  "form-control",
+		         autofocus: true  %></br>
+    
+      <%= f.submit "Проверить", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <p class = "text-center"> Застрял? <%= link_to "Next card", root_path%></p>
+<% else %>
+  <div class = "alert alert-info text-center">
+    Поздарвляю ты знаешь все слова из словаря, <%= link_to "добавь новые", new_card_path %> или дождись когда пройдет срок обновления.
+  </div>
+<% end %>

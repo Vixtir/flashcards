@@ -1,5 +1,8 @@
 class Card < ActiveRecord::Base
-  before_validation :add_review_time
+  scope :rand_word, -> { order("RANDOM()").limit(1) }
+  scope :need_check, lambda { where('review_date <= ?', Time.now) }
+  
+  before_validation :set_review_date
   
   validates :original_text, :translated_text, :review_date, presence: true
  
@@ -12,8 +15,13 @@ class Card < ActiveRecord::Base
     end	
   end
   
-  protected
-    def add_review_time
-      self.review_date = Date.today + 3.day
-    end
+  
+  def set_review_date
+    self.review_date = Date.today	
+  end
+
+  def add_review_date
+    self.update_attribute(:review_date, Date.today + 3.day)
+  end
+
 end
