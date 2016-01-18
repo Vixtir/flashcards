@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   end
   
   private
+
     def current_card
       card = Card.need_check.rand_word.first
     end

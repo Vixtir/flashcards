@@ -41,13 +41,13 @@ class CardsController < ApplicationController
   
   def check
     @card = Card.find(params[:card][:id])
-    if  params[:card][:translated_text] == params[:answer]
-      flash[:success] = "Правильно"
-      add_days
-      redirect_to root_url 
+    
+    if @card.check_word(params[:card][:translated_text],params[:answer])
+      flash[:success] = "Right"
+      redirect_to root_url
     else
-      flash.now[:danger] = "Не правильно, попробуй еще раз"
-      render 'home/index'     
+      flash[:info] = "Wrong"
+      render 'home/index'
     end
   end
 
@@ -58,9 +58,5 @@ class CardsController < ApplicationController
  
     def current_card
       @card = Card.find(params[:id])
-    end
-    
-    def add_days
-      @card.add_review_date
     end
 end

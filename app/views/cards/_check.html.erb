@@ -3,7 +3,7 @@
     <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
 
-<% if have_cards? %>
+<% if Card.need_check.any? %>
   <h1><%= card.original_text %></h1>
   <%= simple_form_for :card, :url => {:action => "check", 
                                       :controller => "cards"} do |f| %>
