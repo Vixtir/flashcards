@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   before_action :current_card, only: :index
-  def index    
+
+  def index
     @card = current_card
   end
   

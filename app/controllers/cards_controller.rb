@@ -1,5 +1,4 @@
 class CardsController < ApplicationController
- 
   before_action :current_card, only: [:show,:edit,:update,:destroy]
 
   def new
@@ -26,7 +25,7 @@ class CardsController < ApplicationController
   def edit
   end
 
-  def update   
+  def update
     if @card.update(card_params)
       redirect_to cards_path
     else
@@ -38,7 +37,7 @@ class CardsController < ApplicationController
     @card.destroy
     redirect_to cards_path
   end
-  
+
   def check
     @card = Card.find(params[:card][:id])
     
@@ -52,6 +51,7 @@ class CardsController < ApplicationController
   end
 
   private
+
     def card_params
       params.require(:card).permit(:original_text,:translated_text)
     end
