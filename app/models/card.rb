@@ -14,8 +14,7 @@ class Card < ActiveRecord::Base
       errors.add(:translated_text, "Перевод не может быть равен оригиналу")
     end	
   end
-  
-  
+
   def set_review_date
     self.review_date = Date.today	
   end
@@ -23,5 +22,4 @@ class Card < ActiveRecord::Base
   def add_review_date
     self.update_attribute(:review_date, Date.today + 3.day)
   end
-
 end
