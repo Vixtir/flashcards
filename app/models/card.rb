@@ -18,15 +18,15 @@ class Card < ActiveRecord::Base
   end
   
   def downcase_translate
-    self.translated_text = self.translated_text.mb_chars.downcase
+    translated_text = self.translated_text.mb_chars.downcase
   end
 
   def set_review_date
-    self.review_date = Time.zone.today
+   self.review_date = Time.zone.today
   end
 
   def add_review_date
-    self.update_attribute(:review_date, Time.zone.now + 3.day)
+    update_attribute(:review_date, Time.zone.now + 3.day)
   end
   
   def check_word(question,answer)
