@@ -29,9 +29,10 @@ class Card < ActiveRecord::Base
     update_attribute(:review_date, Time.zone.now + 3.day)
   end
 
-  def check_word(question, answer)
-    answer = answer.downcase
-    if question == answer
+  def check_word(answer)
+    answer = answer.mb_chars.downcase.to_s
+
+    if answer.match(/\A[а-яА-Я]+\z/) && translated_text == answer
       add_review_date
     end
   end

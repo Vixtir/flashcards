@@ -41,11 +41,11 @@ class CardsController < ApplicationController
   def check
     @card = Card.find(params[:card][:id])
 
-    if @card.check_word(params[:card][:translated_text], params[:answer])
+    if @card.check_word(params[:answer])
       flash[:success] = "Right"
-      redirect_to root_url
+      redirect_to root_path
     else
-      flash[:info] = "Wrong"
+      flash[:danger] = "Wrong"
       render "home/index"
     end
   end
