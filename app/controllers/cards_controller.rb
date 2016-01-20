@@ -46,7 +46,7 @@ class CardsController < ApplicationController
       redirect_to root_path
     else
       flash[:danger] = "Wrong"
-      render "home/index" 
+      render "home/index"
     end
      
   end
