@@ -8,7 +8,6 @@
   <%= simple_form_for :card, :url => {:action => "check", 
                                       :controller => "cards"} do |f| %>
     <%= f.hidden_field :id, :value => card.id %>
-    <%= f.hidden_field :translated_text, :value => card.translated_text %>
     <%= text_field_tag :answer, 
                        nil , 
                        placeholder: 'Введите перевод...',

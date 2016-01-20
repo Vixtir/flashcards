@@ -18,7 +18,7 @@ class Card < ActiveRecord::Base
   end
 
   def downcase_translate
-    self.translated_text = translated_text.mb_chars.downcase
+    self.translated_text = translated_text.mb_chars.downcase.to_s
   end
 
   def set_review_date
@@ -30,9 +30,7 @@ class Card < ActiveRecord::Base
   end
 
   def check_word(answer)
-    answer = answer.mb_chars.downcase.to_s
-
-    if answer.match(/\A[а-яА-Я]+\z/) && translated_text == answer
+    if translated_text == answer.mb_chars.downcase.to_s
       add_review_date
     end
   end
