@@ -4,13 +4,13 @@ RSpec.describe Card, :type => :model do
   describe Card
     let(:card){ FactoryGirl.create(:card)}
 
-    it "has a valid factory" do 
+    it "has a valid factory" do
       expect(card).to be_valid
     end
      
     it "is invalid when original eq translate" do
-     card.translated_text = "Home"
-     expect(card).not_to be_valid
+      card.translated_text = "Home"
+      expect(card).not_to be_valid
     end
 
     it "save downcase translate text" do
@@ -18,7 +18,7 @@ RSpec.describe Card, :type => :model do
       expect(card.translated_text).to eq("дом")
     end
 
-  describe 'sort method' do
+  describe "sort method" do
    let(:card1){ FactoryGirl.create(:card, original_text: "Yellow", translated_text: "Желтый") }
    let(:card2){ FactoryGirl.create(:card, original_text: "Red", translated_text: "Красный") }
 
@@ -49,5 +49,5 @@ RSpec.describe Card, :type => :model do
       end
     end
   end
-end 
+end
 
