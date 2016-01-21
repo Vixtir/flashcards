@@ -19,17 +19,15 @@ RSpec.describe Card, type: "model" do
     end
 
   describe "sort method" do
-    let(:card1) { FactoryGirl.create(:card,
-                                     original_text: "Yellow", translated_text: "Желтый") }
-    let(:card2) { FactoryGirl.create(:card,
-                                     original_text: "Red", translated_text: "Красный") }
+    let(:card1) { FactoryGirl.create(:card) }
+    let(:card2) { FactoryGirl.create(:card) }
 
     it "return sorted" do
       expect(Card.need_check).to match_array([card1, card2])
     end
 
     it "return after check word" do
-      card2.check_word("Красный")
+      card2.check_word("дом")
       expect(Card.need_check).to match_array([card1])
     end
   end
