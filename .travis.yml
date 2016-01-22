@@ -4,7 +4,9 @@ rvm:
 services:
   - postgresql
 
-script: bundle exec rspec spec/
+script:
+  - rake db:migrate RAILS_ENV=test
+  - bundle exec rspec spec/
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
