@@ -1,15 +1,15 @@
 require "rails_helper"
 
 describe "Card", type: "feature" do
-   describe "adding" do
-     it "success adding card" do
-     visit new_card_path
-     within("#new_card") do
-       fill_in 'card_original_text', with: "Home"
-       fill_in 'card_translated_text', with: "Дом"
+  describe "adding" do
+    it "success adding card" do
+      visit new_card_path
+      within("#new_card") do
+        fill_in "card_original_text", with: "Home"
+        fill_in "card_translated_text", with: "Дом"
       end
-    click_button "Create Card"
-    expect(page).to have_content "Карточка успешно создана"
+      click_button "Create Card"
+      expect(page).to have_content "Карточка успешно создана"
     end
 
     it "failed add card" do
