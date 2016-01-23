@@ -9,6 +9,7 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
 
     if @card.save
+      flash[:success] = "Карточка успешно создана"
       redirect_to cards_path
     else
       render 'new'
