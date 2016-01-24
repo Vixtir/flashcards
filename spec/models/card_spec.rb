@@ -3,11 +3,17 @@ require "rails_helper"
 RSpec.describe Card, type: "model" do
   describe Card
   let(:card) { FactoryGirl.create(:card) }
-
+  let(:user) { FactoryGirl.create(:user) }
+  
     it "has a valid factory" do
       expect(card).to be_valid
     end
-     
+    
+    it "invalid without user" do
+      card.user = nil
+      expect(card).not_to be_valid
+    end
+ 
     it "is invalid when original eq translate" do
       card.translated_text = "Home"
       expect(card).not_to be_valid
@@ -21,7 +27,7 @@ RSpec.describe Card, type: "model" do
   describe "sort method" do
     let(:card1) { FactoryGirl.create(:card) }
     let(:card2) { FactoryGirl.create(:card) }
-
+    
     it "return sorted" do
       expect(Card.need_check).to match_array([card1, card2])
     end
