@@ -1,28 +1,27 @@
 require "rails_helper"
 
 RSpec.describe Card, type: "model" do
-  describe "Card#"
-    let(:card) { FactoryGirl.create(:card) }
-    let(:user) { FactoryGirl.create(:user) }
+  let(:card) { FactoryGirl.create(:card) }
+  let(:user) { FactoryGirl.create(:user) }
 
-    it "has a valid factory" do
-      expect(card).to be_valid
-    end
+  it "has a valid factory" do
+    expect(card).to be_valid
+  end
 
-    it "invalid without user" do
-      card.user = nil
-      expect(card).not_to be_valid
-    end
+  it "invalid without user" do
+    card.user = nil
+    expect(card).not_to be_valid
+  end
 
-    it "is invalid when original eq translate" do
-      card.translated_text = "Home"
-      expect(card).not_to be_valid
-    end
+  it "is invalid when original eq translate" do
+    card.translated_text = "Home"
+    expect(card).not_to be_valid
+  end
 
-    it "save downcase translate text" do
-      card.original_text = "ДоМ"
-      expect(card.translated_text).to eq("дом")
-    end
+  it "save downcase translate text" do
+    card.original_text = "ДоМ"
+    expect(card.translated_text).to eq("дом")
+  end
 
   describe "sort method" do
     let(:card1) { FactoryGirl.create(:card) }
