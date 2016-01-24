@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe Card, type: "model" do
   describe "Card#"
-  let(:card) { FactoryGirl.create(:card) }
-  let(:user) { FactoryGirl.create(:user) }
+    let(:card) { FactoryGirl.create(:card) }
+    let(:user) { FactoryGirl.create(:user) }
 
     it "has a valid factory" do
       expect(card).to be_valid
