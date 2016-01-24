@@ -7,7 +7,11 @@ class Card < ActiveRecord::Base
   before_validation :set_review_date, on: [:create]
   before_save :downcase_translate
 
-  validates :original_text, :translated_text, :review_date, :user_id, presence: true
+  validates :original_text,
+            :translated_text,
+            :review_date,
+            :user_id,
+            presence: true
   validates :translated_text, format: { with: /\A[а-яА-Я]+\z/,
                                         message: "Только на кириллице" }
   validate  :equal_text

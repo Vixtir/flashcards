@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Card", type: "feature" do
-  let!(:card){ FactoryGirl.create(:card) }
+  let!(:card) { FactoryGirl.create(:card) }
 
   describe "adding" do
     it "adding card without user" do
@@ -27,11 +27,10 @@ describe "Card", type: "feature" do
   end
 
   describe "check card" do
-
     it "right answer" do
       visit root_path
       within("#card_answer") do
-        fill_in "answer", with: card.translated_text 
+        fill_in "answer", with: card.translated_text
       end
       click_button "Проверить"
       expect(page).to have_content "Right"

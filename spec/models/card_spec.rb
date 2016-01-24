@@ -4,16 +4,16 @@ RSpec.describe Card, type: "model" do
   describe Card
   let(:card) { FactoryGirl.create(:card) }
   let(:user) { FactoryGirl.create(:user) }
-  
+
     it "has a valid factory" do
       expect(card).to be_valid
     end
-    
+
     it "invalid without user" do
       card.user = nil
       expect(card).not_to be_valid
     end
- 
+
     it "is invalid when original eq translate" do
       card.translated_text = "Home"
       expect(card).not_to be_valid
