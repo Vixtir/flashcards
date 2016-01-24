@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Card, type: "model" do
-  describe Card
+  describe "Card#"
   let(:card) { FactoryGirl.create(:card) }
   let(:user) { FactoryGirl.create(:user) }
 
@@ -27,7 +27,7 @@ RSpec.describe Card, type: "model" do
   describe "sort method" do
     let(:card1) { FactoryGirl.create(:card) }
     let(:card2) { FactoryGirl.create(:card) }
-    
+
     it "return sorted" do
       expect(Card.need_check).to match_array([card1, card2])
     end
