@@ -1,11 +1,17 @@
 class Card < ActiveRecord::Base
+  belongs_to :user
+
   scope :rand_word, -> { order("RANDOM()").limit(1) }
   scope :need_check, -> { where("review_date <= ?", Time.zone.now) }
 
   before_validation :set_review_date, on: [:create]
   before_save :downcase_translate
 
-  validates :original_text, :translated_text, :review_date, presence: true
+  validates :original_text,
+            :translated_text,
+            :review_date,
+            :user_id,
+            presence: true
   validates :translated_text, format: { with: /\A[а-яА-Я]+\z/,
                                         message: "Только на кириллице" }
   validate  :equal_text

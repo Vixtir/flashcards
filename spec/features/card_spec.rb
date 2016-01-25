@@ -1,15 +1,17 @@
 require "rails_helper"
 
 describe "Card", type: "feature" do
+  let!(:card) { FactoryGirl.create(:card) }
+
   describe "adding" do
-    it "success adding card" do
+    it "adding card without user" do
       visit new_card_path
       within("#new_card") do
-        fill_in "card_original_text", with: "Home"
-        fill_in "card_translated_text", with: "Дом"
+        fill_in "card_original_text", with: card.original_text
+        fill_in "card_translated_text", with: card.translated_text
       end
       click_button "Create Card"
-      expect(page).to have_content "Карточка успешно создана"
+      expect(page).to have_content "User can't be blank"
     end
 
     it "failed add card" do
@@ -24,11 +26,10 @@ describe "Card", type: "feature" do
   end
 
   describe "check card" do
-    let!(:card) { create(:card, original_text: "Home", translated_text: "Дом") }
     it "right answer" do
       visit root_path
       within("#card_answer") do
-        fill_in "answer", with: "дом"
+        fill_in "answer", with: card.translated_text
       end
       click_button "Проверить"
       expect(page).to have_content "Right"

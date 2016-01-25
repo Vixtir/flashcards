@@ -1,6 +1,6 @@
 <p>New card</p>
 <% if @card.errors.any? %>
-  <%= render "card_errors"%>
+  
 <% end %>
 <%= render "form"%>
 
