@@ -2,4 +2,8 @@
 <p class = "text-center"  style="font-size: 22px;">
         Первый в мире удобный менеджер флеш-карточек. Именно так.
 </p>
-<%= render partial: "cards/check", locals: {card: @card}%> 
+<% if current_user %>
+  <%= render partial: "cards/check", locals: {card: @card}%> 
+<% end %>
+
+

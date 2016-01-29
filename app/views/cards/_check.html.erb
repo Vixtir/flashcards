@@ -1,5 +1,6 @@
+
 <div class = "text-center">
-  <% if Card.need_check.any? %>
+  <% if current_user.cards.need_check.any? %>
     <h1><%= card.original_text %></h1>
     <%= simple_form_for :card, html: {id: :card_answer}, :url => {:action => "check", 
                                       :controller => "cards"} do |f| %>
@@ -20,3 +21,7 @@
     </div>
   <% end %>
 </div>
+
+
+
+

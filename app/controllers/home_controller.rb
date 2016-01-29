@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
+  before_action :require_login
   def index
-    @card = Card.need_check.rand_word.first
+    @user = current_user  
+    @card = @user.cards.need_check.rand_word.first
   end
 end
