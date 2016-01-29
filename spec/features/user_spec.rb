@@ -8,7 +8,7 @@ describe "User", type: "feature" do
       visit root_path
       expect(page).to have_content "Please login or register!!!"
     end
- 
+
     it "has a link for registration" do
       visit root_path
       expect(page).to have_selector("#register")
@@ -35,7 +35,7 @@ describe "User", type: "feature" do
       click_button "Create User"
       expect(page).to have_content "User has been created"
     end
- 
+
     it "invalid" do
       visit root_path
       click_link("register")

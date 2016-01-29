@@ -23,8 +23,8 @@ RSpec.describe Card, type: "model" do
     end
 
     it "is invalid when we have equal text" do
-      card = build(:card,original_text: "olOlo",translated_text: "oLoLo")
-      expect(card).not_to be_valid 
+      card = build(:card,original_text: "olOlo", translated_text: "oLoLo")
+      expect(card).not_to be_valid
     end
 
     it "return downcased translate after save" do
@@ -32,7 +32,7 @@ RSpec.describe Card, type: "model" do
       expect(card.translated_text).to eq("привет")
     end
 
-    describe "check word"  do
+    describe "check word" do
       it "has right answer" do
         card = create(:card)
         t = card.review_date
