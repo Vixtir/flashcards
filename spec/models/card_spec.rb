@@ -9,7 +9,7 @@ RSpec.describe Card, type: "model" do
 
     it "is invalid without original text" do
       card = build(:card, original_text: nil)
-      expect(card).not_to be_valid    
+      expect(card).not_to be_valid
     end
 
     it "is invalid without translated text" do
@@ -53,7 +53,7 @@ RSpec.describe Card, type: "model" do
       card1 = create(:card, user: user)
       card2 = create(:card, user: user)
       card2.check_word("дом")
-      expect(Card.need_check).to match_array([card1])     
+      expect(Card.need_check).to match_array([card1])
     end
   end
 end

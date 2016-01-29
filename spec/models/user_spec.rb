@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
 
     describe "email field" do
       let(:user) { FactoryGirl.build(:user) }
-      let(:user2) { FactoryGirl.build(:user) }      
+      let(:user2) { FactoryGirl.build(:user) }
  
       it "email field empty" do
         user.email = nil
@@ -26,10 +26,10 @@ RSpec.describe User, type: :model do
         expect(user).not_to be_valid
       end
 
-      it "not unique email" do  
-        user.save              
-        expect(user2).not_to be_valid     
-      end 
+      it "not unique email" do
+        user.save
+        expect(user2).not_to be_valid
+      end
     end
   end
 end
