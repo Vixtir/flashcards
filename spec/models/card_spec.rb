@@ -6,7 +6,7 @@ RSpec.describe Card, type: "model" do
       card = build(:card)
       expect(card).to be_valid
     end
-    
+
     it "is invalid without original text" do
       card = build(:card, original_text: nil)
       expect(card).not_to be_valid    
@@ -21,17 +21,17 @@ RSpec.describe Card, type: "model" do
       card = build(:card, user_id: nil)
       expect(card).not_to be_valid
     end
-    
+
     it "is invalid when we have equal text" do
       card = build(:card,original_text: "olOlo",translated_text: "oLoLo")
       expect(card).not_to be_valid 
     end
-    
+
     it "return downcased translate after save" do
       card = create(:card, translated_text: "ПриВеТ")
       expect(card.translated_text).to eq("привет")
     end
-    
+
     describe "check word"  do
       it "has right answer" do
         card = create(:card)
@@ -39,7 +39,7 @@ RSpec.describe Card, type: "model" do
         card.check_word("дОм")
         expect(card.review_date).to eq(t + 3.day)
       end
-      
+
       it "has wrong answer" do
         card = create(:card)
         t = card.review_date
@@ -47,7 +47,7 @@ RSpec.describe Card, type: "model" do
         expect(card.review_date).to eq(t)
       end
     end
-    
+
     it "is return only need checked words" do
       user = create(:user, email: "test@gmail.com")
       card1 = create(:card, user: user)
