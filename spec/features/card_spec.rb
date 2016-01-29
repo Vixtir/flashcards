@@ -2,8 +2,8 @@ require "rails_helper"
 
 describe "User", :type => :feature do
  
-  let!(:user) { create(:user) } 
-  
+  let!(:user) { create(:user) }
+
   before(:each) do
       visit root_path
       fill_in "Email", with: user.email
@@ -32,12 +32,12 @@ describe "User", :type => :feature do
     expect(page).to have_content "Оригинал не может быть равен переводу"
   end
 
-  describe "answer" do  
-   
+  describe "answer" do
+
   before(:each) do
     @card = create(:card, user: user)
-  end 
-  
+  end
+
     it "visit" do
       visit root_path
       expect(page).to have_content "Home"

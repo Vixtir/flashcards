@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "User", type: "feature" do
-  let(:user) { FactoryGirl.build(:user)  }  
+  let(:user) { FactoryGirl.build(:user) }
 
   describe "enter on the site first time" do
     it "has a meassage about login" do
@@ -13,18 +13,17 @@ describe "User", type: "feature" do
       visit root_path
       expect(page).to have_selector("#register")
     end
-    
+ 
     it "have no logout link" do
       visit root_path
       expect(page).not_to have_selector("#logout")
     end
-    
+ 
     it "has a Facebook login link" do
       visit root_path
       expect(page).to have_content "Login with Facebook"
     end
   end
-  
 
   describe "#registration" do
     it "valid" do
@@ -34,9 +33,9 @@ describe "User", type: "feature" do
       fill_in "Password", with: user.password
       fill_in "Password confirmation", with: user.password_confirmation
       click_button "Create User"
-      expect(page).to have_content "User has been created" 
+      expect(page).to have_content "User has been created"
     end
-    
+ 
     it "invalid" do
       visit root_path
       click_link("register")
@@ -44,28 +43,26 @@ describe "User", type: "feature" do
       expect(page).to have_content "errors"
     end
   end
-  
+
   describe "#login" do
-    let(:user) { FactoryGirl.create(:user)  }
+    let(:user) { FactoryGirl.create(:user) }
 
     it "valid" do
-
       visit root_path
       fill_in "Email", with: user.email
-      fill_in "Password", with: "password" 
+      fill_in "Password", with: "password"
       click_button "Login"
       expect(page).to have_content "Login succefull"
     end
- 
-    it "has a logout button" do
 
+    it "has a logout button" do
       visit root_path
       fill_in "Email", with: user.email
-      fill_in "Password", with: "password" 
+      fill_in "Password", with: "password"
       click_button "Login"
       expect(page).to have_content "Log out"
     end
-    
+
     it "has a profile link" do
       visit root_path
       fill_in "Email", with: user.email
@@ -73,7 +70,7 @@ describe "User", type: "feature" do
       click_button "Login"
       expect(page).to have_content "Profile"
     end
-    
+
     it "enter into profile" do
       visit root_path
       fill_in "Email", with: user.email
