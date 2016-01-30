@@ -37,14 +37,14 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation)
+  end
 
-    def external_user
-      @user = User.find(params[:id])
-      if @user.external?
-        redirect_to root_path
-      end
+  def external_user
+    @user = User.find(params[:id])
+    if @user.external?
+      redirect_to root_path
     end
+  end
 end
