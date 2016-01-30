@@ -1,12 +1,14 @@
 require "rails_helper"
+require "spec_helper"
+require "capybara/rspec"
 
 describe "User", type: "feature" do
-  let!(:user) { create(:user, email: "test@test.com") }
+  let!(:user) { create(:user, email: "test2@email.com") }
 
   before(:each) do
     visit root_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "password"
+    fill_in :email, with: "test2@email.com"
+    fill_in :password, with: "password"
     click_button "Login"
   end
 
