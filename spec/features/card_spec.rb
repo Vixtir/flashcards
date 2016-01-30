@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "User", type: "feature" do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, email: "test@test.com") }
 
   before(:each) do
     visit root_path
