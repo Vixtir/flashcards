@@ -3,13 +3,10 @@ require "spec_helper"
 require "capybara/rspec"
 
 describe "User", type: "feature" do
-  let!(:user) { create(:user, email: "test2@email.com") }
+  let!(:user) { create(:user) }
 
   before(:each) do
-    visit root_path
-    fill_in :email, with: "test2@email.com"
-    fill_in :password, with: "password"
-    click_button "Login"
+    login("user@email.com", "password")
   end
 
   it "have no cards" do
