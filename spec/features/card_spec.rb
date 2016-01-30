@@ -32,7 +32,6 @@ describe "User", type: "feature" do
   end
 
   describe "answer" do
-
     before(:each) do
       @card = create(:card, user: user)
     end
