@@ -27,7 +27,7 @@ describe "Card", type: "feature" do
     fill_in "card_original_text", with: "HoMe"
     fill_in "card_translated_text", with: "hOmE"
     click_button "Create Card"
-    expect(page).to have_content "Оригинал не может быть равен переводу"
+    expect(page).to have_content "Только на кириллице"
   end
 
   describe "answer" do

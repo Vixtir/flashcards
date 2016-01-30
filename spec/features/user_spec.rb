@@ -29,18 +29,16 @@ describe "User", type: "feature" do
     it "valid" do
       visit root_path
       click_link("register")
-      fill_in "Email", with: user.email
-      fill_in "Password", with: user.password
-      fill_in "Password confirmation", with: user.password_confirmation
+      fill_in "user_email", with: user.email
+      fill_in "user_password", with: user.password
+      fill_in "user_password_confirmation", with: user.password_confirmation
       click_button "Create User"
       expect(page).to have_content "User has been created"
     end
 
-    it "invalid" do
-      visit root_path
-      click_link("register")
-      click_button "Create User"
-      expect(page).to have_content "errors"
+    it "path has html5 validation" do
+      visit new_user_path
+      expect(page).to have_xpath("//input[@required='required']")
     end
   end
 
@@ -49,7 +47,7 @@ describe "User", type: "feature" do
 
     before(:each) do
       login("user@email.com", "password")
-   end
+    end
 
     it "valid" do
       expect(page).to have_content "Login succefull"
