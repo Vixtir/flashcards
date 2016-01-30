@@ -46,7 +46,7 @@ class CardsController < ApplicationController
 
   def check
     @card = Card.find(params[:card][:id])
-    
+
     if @card.check_word(params[:answer])
       flash[:success] = "Right"
       redirect_to root_path
@@ -59,7 +59,7 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:original_text,:translated_text)
+    params.require(:card).permit(:original_text, :translated_text)
   end
 
   def correct_user_card
