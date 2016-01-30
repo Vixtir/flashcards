@@ -67,7 +67,7 @@ class CardsController < ApplicationController
         flash[:danger] = "U cant edit not ur cards"
         redirect_to cards_path
       end
-    end 
+    end
 
     def current_card
       @card = Card.find(params[:id])

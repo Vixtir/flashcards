@@ -4,7 +4,7 @@ class SorceryCore < ActiveRecord::Migration
       t.remove :password
       t.string :crypted_password
       t.string :salt
-   end
+    end
 
     add_index :users, :email, unique: true
   end
