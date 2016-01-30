@@ -16,9 +16,9 @@ class UsersController < ApplicationController
       render action: "new"
     end
   end
-  
+
   def show
-    @user = User.find(params[:id]) 
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     external_user
     if @user.update_attributes(user_params)
-        redirect_to(root_path, :notice => "Password has been changed")
+      redirect_to(root_path, notice: "Password has been changed")
     else
       render :action => "edit"
     end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation)
     end
-   
+
     def external_user
       @user = User.find(params[:id])
       if @user.external?
