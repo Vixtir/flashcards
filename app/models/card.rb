@@ -14,13 +14,14 @@ class Card < ActiveRecord::Base
             presence: true
   validates :translated_text, format: { with: /\A[а-яА-Я]+\z/,
                                         message: "Только на кириллице" }
-  validate  :equal_text,
-            if: -> { !original_text.nil? && !translated_text.nil? }
-
+  validate  :equal_text
+            
   def equal_text
-    if self.original_text.downcase == self.translated_text.downcase
-      errors.add(:original_text, "Оригинал не может быть равен переводу")
-      errors.add(:translated_text, "Перевод не может быть равен оригиналу")
+    if !original_text.nil? && !translated_text.nil?
+      if self.original_text.downcase == self.translated_text.downcase
+        errors.add(:original_text, "Оригинал не может быть равен переводу")
+        errors.add(:translated_text, "Перевод не может быть равен оригиналу")
+      end
     end
   end
 

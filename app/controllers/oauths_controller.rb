@@ -20,7 +20,7 @@ class OauthsController < ApplicationController
         redirect_to root_path
         flash[:success] = "Logged in from #{provider.titleize}!"
       rescue
-        redirect_to root_path,
+        redirect_to root_path
         flash[:wrong] = "Failed to login from #{provider.titleize}!"
       end
     end

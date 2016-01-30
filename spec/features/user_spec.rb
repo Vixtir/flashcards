@@ -13,12 +13,12 @@ describe "User", type: "feature" do
       visit root_path
       expect(page).to have_selector("#register")
     end
- 
+
     it "have no logout link" do
       visit root_path
       expect(page).not_to have_selector("#logout")
     end
- 
+
     it "has a Facebook login link" do
       visit root_path
       expect(page).to have_content "Login with Facebook"
@@ -45,37 +45,25 @@ describe "User", type: "feature" do
   end
 
   describe "#login" do
-    let(:user) { FactoryGirl.create(:user) }
+    let!(:user) { create(:user) }
+
+    before(:each) do
+      login("user@email.com", "password")
+   end
 
     it "valid" do
-      visit root_path
-      fill_in "Email", with: user.email
-      fill_in "Password", with: "password"
-      click_button "Login"
       expect(page).to have_content "Login succefull"
     end
 
     it "has a logout button" do
-      visit root_path
-      fill_in "Email", with: user.email
-      fill_in "Password", with: "password"
-      click_button "Login"
       expect(page).to have_content "Log out"
     end
 
     it "has a profile link" do
-      visit root_path
-      fill_in "Email", with: user.email
-      fill_in "Password", with: "password"
-      click_button "Login"
       expect(page).to have_content "Profile"
     end
 
     it "enter into profile" do
-      visit root_path
-      fill_in "Email", with: user.email
-      fill_in "Password", with: "password"
-      click_button "Login"
       click_link("profile")
       expect(page).to have_content "Email"
     end
