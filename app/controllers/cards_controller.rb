@@ -61,14 +61,14 @@ class CardsController < ApplicationController
     def card_params
       params.require(:card).permit(:original_text,:translated_text)
     end
-    
+
     def correct_user_card
       unless current_card.user == current_user
         flash[:danger] = "U cant edit not ur cards"
         redirect_to cards_path
       end
     end 
-   
+
     def current_card
       @card = Card.find(params[:id])
     end
