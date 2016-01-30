@@ -2,7 +2,7 @@ require "rails_helper"
 require "spec_helper"
 require "capybara/rspec"
 
-describe "User", type: "feature" do
+describe "Card", type: "feature" do
   let!(:user) { create(:user) }
 
   before(:each) do
