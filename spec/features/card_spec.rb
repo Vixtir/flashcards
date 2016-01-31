@@ -3,14 +3,13 @@ require "spec_helper"
 require "capybara/rspec"
 
 describe "Card", type: "feature" do
-  let!(:user) { create(:user,email: "email@test.com")}
+  let!(:user) { create(:user, email: "email@test.com") }
   before(:each) do
     login("email@test.com", "password")
   end
 
   it "have no cards" do
     visit root_path
-   # login_user_post("user@email.com", "password")
     expect(page).to have_content "Поздарвляю ты знаешь"
   end
 
