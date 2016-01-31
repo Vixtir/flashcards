@@ -3,11 +3,9 @@ require "spec_helper"
 require "capybara/rspec"
 
 describe "Card", type: "feature" do
-  let!(:user) { create(:user) }
-
+  let!(:user) { create(:user,email: "email@test.com")}
   before(:each) do
-   # login("user@email.com", "password")
-    login user
+    login("email@test.com", "password")
   end
 
   it "have no cards" do

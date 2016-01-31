@@ -31,8 +31,8 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include Sorcery::TestHelpers::Rails
  # config.include AuthenticationForFeatureRequest, type: :feature
-  config.include Sorcery::TestHelpers::Rails::Controller, type: :controller
-  config.include Sorcery::TestHelpers::Rails::Integration, type: :feature 
+ # config.include Sorcery::TestHelpers::Rails::Controller, type: :controller
+  #config.include Sorcery::TestHelpers::Rails::Integration, type: :feature 
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -59,12 +59,12 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
- # def login(email, password)
- #   visit login_path
- #   fill_in :email, with: email
- #   fill_in :password, with: password
- #   click_button "Login"
- # end
+  def login(email, password)
+    visit login_path
+    fill_in :email, with: email
+    fill_in :password, with: password
+    click_button "Login"
+  end
 # module Sorcery
 # module TestHelpers
  # module Rails
@@ -74,10 +74,10 @@ RSpec.configure do |config|
    # end
 #  end
  # end
-  def login user, password = 'login'
-    user.update_attributes password: password
-
-    page.driver.post(user_sessions_url, {email: user.email, password: password})
-    visit root_url
-  end
+#  def login user, password = 'login'
+#    user.update_attributes password: password
+#
+ #   page.driver.post(user_sessions_url, {email: user.email, password: password})
+  #  visit root_url
+  #end
 end
