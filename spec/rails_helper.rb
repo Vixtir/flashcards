@@ -30,6 +30,10 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include Sorcery::TestHelpers::Rails
+
+  config.include Sorcery::TestHelpers::Rails::Controller, type: :controller
+  config.include Sorcery::TestHelpers::Rails::Integration, type: :feature 
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -55,16 +59,19 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-module Sorcery
-  module TestHelpers
-    module Rails
-      def login(email, password)
-        visit login_path
-        fill_in :email, with: email
-        fill_in :password, with: password
-        click_button "Login"
+ # def login(email, password)
+ #   visit login_path
+ #   fill_in :email, with: email
+ #   fill_in :password, with: password
+ #   click_button "Login"
+ # end
+ module Sorcery
+ module TestHelpers
+  module Rails
+      def login_user_post(user, password)
+        page.driver.post(user_sessions_url, { email: user.email, password: password}) 
       end
     end
   end
-end 
+  end
 end

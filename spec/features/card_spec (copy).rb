@@ -7,12 +7,11 @@ describe "Card", type: "feature" do
 
   before(:each) do
    # login("user@email.com", "password")
-    login_user_post(user, "password") 
+   login_user(user = nil)
   end
 
   it "have no cards" do
     visit root_path
-   # login_user_post("user@email.com", "password")
     expect(page).to have_content "Поздарвляю ты знаешь"
   end
 
