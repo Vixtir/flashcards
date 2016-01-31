@@ -7,7 +7,7 @@ describe "Card", type: "feature" do
 
   before(:each) do
    # login("user@email.com", "password")
-    login_user_post(user, "password") 
+    login user
   end
 
   it "have no cards" do

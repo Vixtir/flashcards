@@ -1,11 +1,8 @@
-module Sorcery
-  module TestHelpers
-    module Rails
-      module Integration
-        def login_user_post(user, password)
-          page.driver.post(user_sessions_url, { email: user.email, password: password}) 
-        end
-      end
-    end
+module AuthenticationForFeatureRequest
+  def login user, password = 'login'
+    user.update_attributes password: password
+
+    page.driver.post sessions_url, {email: user.email, password: password}
+    visit root_url
   end
 end

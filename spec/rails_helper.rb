@@ -30,7 +30,7 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include Sorcery::TestHelpers::Rails
-
+ # config.include AuthenticationForFeatureRequest, type: :feature
   config.include Sorcery::TestHelpers::Rails::Controller, type: :controller
   config.include Sorcery::TestHelpers::Rails::Integration, type: :feature 
 
@@ -65,13 +65,19 @@ RSpec.configure do |config|
  #   fill_in :password, with: password
  #   click_button "Login"
  # end
- module Sorcery
- module TestHelpers
-  module Rails
-      def login_user_post(user, password)
-        page.driver.post(user_sessions_url, { email: user.email, password: password}) 
-      end
-    end
-  end
+# module Sorcery
+# module TestHelpers
+ # module Rails
+  #    def login_user_post(user, password)
+   #     page.driver.post(user_sessions_url, { email: user.email, password: password}) 
+    #  end
+   # end
+#  end
+ # end
+  def login user, password = 'login'
+    user.update_attributes password: password
+
+    page.driver.post(user_sessions_url, {email: user.email, password: password})
+    visit root_url
   end
 end
