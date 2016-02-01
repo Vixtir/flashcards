@@ -1,5 +1,2 @@
-IfUnlessModifier:
-  MaxLineLength: 80
-
-StringLiterals:
-  Enabled: false
+ruby:
+  config_file: .ruby-style.yml
