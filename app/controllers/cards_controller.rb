@@ -4,13 +4,11 @@ class CardsController < ApplicationController
   before_action :require_login
 
   def new
-    @user = current_user
-    @card = @user.cards.build
+    @card = current_user.cards.build
   end
 
   def create
-    @user = current_user
-    @card = @user.cards.create(card_params)
+    @card = current_user.cards.create(card_params)
 
     if @card.save
       flash[:success] = "Карточка успешно создана"
@@ -24,8 +22,7 @@ class CardsController < ApplicationController
   end
 
   def index
-    @user = current_user
-    @cards = @user.cards
+    @cards = current_user.cards
   end
 
   def edit

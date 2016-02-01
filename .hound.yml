@@ -1,0 +1,5 @@
+Style/IfUnlessModifier:
+  MaxLineLength: 80
+
+Style/StringLiterals:
+  Enabled: false
