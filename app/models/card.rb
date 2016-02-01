@@ -1,6 +1,8 @@
 class Card < ActiveRecord::Base
   belongs_to :user
 
+  mount_uploader :picture, PictureUploader
+
   scope :rand_word, -> { order("RANDOM()").limit(1) }
   scope :need_check, -> { where("review_date <= ?", Time.zone.now) }
 
