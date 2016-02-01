@@ -1,0 +1,6 @@
+<div class="container">
+  <% if @user.errors.any? %>
+    <%= render partial: "user_errors"%>
+  <% end %>
+  <%= render partial: "form"%>
+<div>

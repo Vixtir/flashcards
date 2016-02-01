@@ -1,45 +1,54 @@
 require "rails_helper"
+require "spec_helper"
+require "capybara/rspec"
 
 describe "Card", type: "feature" do
-  let!(:card) { FactoryGirl.create(:card) }
-
-  describe "adding" do
-    it "adding card without user" do
-      visit new_card_path
-      within("#new_card") do
-        fill_in "card_original_text", with: card.original_text
-        fill_in "card_translated_text", with: card.translated_text
-      end
-      click_button "Create Card"
-      expect(page).to have_content "User can't be blank"
-    end
-
-    it "failed add card" do
-      visit new_card_path
-      within("#new_card") do
-        fill_in "card_original_text", with: "HoMe"
-        fill_in "card_translated_text", with: "hOmE"
-      end
-      click_button "Create Card"
-      expect(page).to have_content "Оригинал не может быть равен переводу"
-    end
+  let!(:user) { create(:user, email: "email@test.com") }
+  before(:each) do
+    login("email@test.com", "password")
   end
 
-  describe "check card" do
+  it "have no cards" do
+    visit root_path
+    expect(page).to have_content "Поздарвляю ты знаешь"
+  end
+
+  it "succesfull add card" do
+    visit new_card_path
+    fill_in "card_original_text", with: "HoMe"
+    fill_in "card_translated_text", with: "дом"
+    click_button "Create Card"
+    expect(page).to have_content "Карточка успешно создана"
+  end
+
+  it "failed add card" do
+    visit new_card_path
+    fill_in "card_original_text", with: "HoMe"
+    fill_in "card_translated_text", with: "hOmE"
+    click_button "Create Card"
+    expect(page).to have_content "Только на кириллице"
+  end
+
+  describe "answer" do
+    before(:each) do
+      @card = create(:card, user: user)
+    end
+
+    it "visit" do
+      visit root_path
+      expect(page).to have_content "Home"
+    end
+
     it "right answer" do
       visit root_path
-      within("#card_answer") do
-        fill_in "answer", with: card.translated_text
-      end
+      fill_in "answer", with: @card.translated_text
       click_button "Проверить"
       expect(page).to have_content "Right"
     end
 
     it "wrong answer" do
       visit root_path
-      within("#card_answer") do
-        fill_in "answer", with: "wrong_answer"
-      end
+      fill_in "answer", with: "wrong_answer"
       click_button "Проверить"
       expect(page).to have_content "Wrong"
     end

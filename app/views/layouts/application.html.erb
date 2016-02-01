@@ -25,20 +25,23 @@
         <ul class="nav navbar-nav">
           <li><%= link_to 'Все карточки', cards_path %></li>
           <li><%= link_to 'Добавить карточку', new_card_path%></li>
+         <% if current_user %>
+            <li><%= link_to 'Profile', edit_user_path(current_user),
+                                       id: "profile" %></li>
+            <li><%= link_to 'Log out', :logout,
+                                       method: :post, id: "logout" %></li>
+          <% else %>
+            <li><%= link_to 'Login with Facebook',
+                    auth_at_provider_path(:provider => :facebook) %></li>
+          <% end %>
         </ul>
       </div>
     </nav>
-  
-
-
     <div class="container">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
-
       <%= yield  %>
     </div>
-
   </body>
-
 </html>

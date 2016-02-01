@@ -7,6 +7,8 @@ class Card < ActiveRecord::Base
   before_validation :set_review_date, on: [:create]
   before_save :downcase_translate
 
+  validate  :equal_text
+
   validates :original_text,
             :translated_text,
             :review_date,
@@ -14,12 +16,13 @@ class Card < ActiveRecord::Base
             presence: true
   validates :translated_text, format: { with: /\A[а-яА-Я]+\z/,
                                         message: "Только на кириллице" }
-  validate  :equal_text
 
   def equal_text
-    if self.original_text.downcase == self.translated_text.downcase
-      errors.add(:original_text, "Оригинал не может быть равен переводу")
-      errors.add(:translated_text, "Перевод не может быть равен оригиналу")
+    if !original_text.nil? && !translated_text.nil?
+      unless original_text.casecmp(translated_text)
+        errors.add(:original_text, "Оригинал не может быть равен переводу")
+        errors.add(:translated_text, "Перевод не может быть равен оригиналу")
+      end
     end
   end
 

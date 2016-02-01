@@ -1,18 +1,20 @@
 class CardsController < ApplicationController
   before_action :current_card, only: [:show,:edit,:update,:destroy]
+  before_action :correct_user_card, only: [:edit]
+  before_action :require_login
 
   def new
-    @card = Card.new
+    @card = current_user.cards.build
   end
 
   def create
-    @card = Card.new(card_params)
+    @card = current_user.cards.create(card_params)
 
     if @card.save
       flash[:success] = "Карточка успешно создана"
       redirect_to cards_path
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -20,7 +22,7 @@ class CardsController < ApplicationController
   end
 
   def index
-    @cards = Card.all
+    @cards = current_user.cards
   end
 
   def edit
@@ -30,7 +32,7 @@ class CardsController < ApplicationController
     if @card.update(card_params)
       redirect_to cards_path
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -49,16 +51,22 @@ class CardsController < ApplicationController
       flash[:danger] = "Wrong"
       render "home/index"
     end
-     
   end
 
   private
 
-    def card_params
-      params.require(:card).permit(:original_text,:translated_text)
+  def card_params
+    params.require(:card).permit(:original_text, :translated_text)
+  end
+
+  def correct_user_card
+    unless current_card.user == current_user
+      flash[:danger] = "U cant edit not ur cards"
+      redirect_to cards_path
     end
- 
-    def current_card
-      @card = Card.find(params[:id])
-    end
+  end
+
+  def current_card
+    @card = Card.find(params[:id])
+  end
 end

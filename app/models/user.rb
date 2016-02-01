@@ -1,3 +1,15 @@
 class User < ActiveRecord::Base
-  has_many :cards
+  authenticates_with_sorcery! do |config|
+    config.authentications_class = Authentication
+  end
+
+  has_many :cards, dependent: :destroy
+  has_many :authentications, dependent: :destroy
+
+  accepts_nested_attributes_for :authentications
+
+  validates_confirmation_of :password,
+                            message: "should match confirmation",
+                            if: :password
+  validates :email, uniqueness: true
 end
