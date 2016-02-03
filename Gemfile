@@ -11,6 +11,7 @@ gem 'figaro'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'rmagick'
 gem 'fog', require: 'fog/aws'
+gem 'travis'
 #gem 'fog-aws'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
