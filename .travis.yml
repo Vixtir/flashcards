@@ -16,7 +16,7 @@ deploy:
   secret_access_key:
     secure: jX/N6zonyJhcxk2zU1lNNjadTmjVkeRALvtKnxfmnRWAWhmtGwRCvu8Un7xnhnawaS+WqYXcLsZqQrvDBGgQ3VbiQth+oAbh4PEZJuE/JaHbI0wqlUsIST0Y/gZ0pd4Nm1Bl0Se55UQxWK/Ugi851LQ3GbUP/cs66NKf3aNTXiDtbmOyEsCOUe3tKtjX71HajYAKUkXLelbWelIY1ker4/bRR8EI6c4dtJZEyaus8KDJay84jTVlMuWKxXY5Sh9Nmx0j0C/sH0lL/Kbdek5+W2Kr5DzCu+snzWnjrlWq6AC0fL+U7zMkrgoQbQSHoomhAl3Qj4Vw9xDpUzryr5ei2oQQ/LUzDMae+q4BNPU4z2P15fpBzbQSoY9yCUH+6aVPphmvAEOf8XSdOccMYGrbuINHTQVSrSPD+Lt/6rdlD1UdA1toEDvBan6uwn6UJG3pp6qs0TOnRrDXk4Y7Zi/NkQCRXINxUxuMUHs+v7ne6Bsrukq5oIecjkN0ky6M4ioluGjBQs57R9qn/rLGQhG8DouUXm7yH+3BH79q1OJ6Oa/vHNyzEN2dSvOXAJJzsysBsIp07vVbo7ltincDvDCXDrC7rqZqwCW6+PoutJbyCX1UdfYpGZIeMHIsMfYNwCjOWylea+PH9keVJeSNXFV186QE1kGUBxZ3daGk/p+j384=
   bucket: paulsflashcards
-  acl: ''
-  on:
-    repo: Vixtir/flashcards
-    branch: tenth-task
+  region: eu-central-1
+
+
+
