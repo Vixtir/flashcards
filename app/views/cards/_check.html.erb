@@ -2,6 +2,7 @@
 <div class = "text-center">
   <% if current_user.cards.need_check.any? %>
     <h1><%= card.original_text %></h1>
+    <%= image_tag(card.picture_url) if card.picture?%><br />
     <%= simple_form_for :card, html: {id: :card_answer}, :url => {:action => "check", 
                                       :controller => "cards"} do |f| %>
     <%= f.hidden_field :id, :value => card.id %>

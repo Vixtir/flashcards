@@ -1,13 +1,17 @@
 language: ruby
 rvm:
-  - "2.2"
+- '2.2'
 services:
-  - postgresql
-
+- postgresql
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rake db:test:prepare
-  - bundle exec rake
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rake
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - cp config/database.yml.travis config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
+env:
+  global:
+  - secure: PuHqarPIOlEHtATFk3Pi1Cnitcl3tPquciCbYMpAYHaBcDU3bmQuQXF6nUFGnP/XYgrZDHcvxjUkCUBTXQE7OtKNom+ABRNFXgPMd9iO9qROpoTov5FldBR1lOxcPXgsiBjEPvks2Kd83QMHWjIRfSG4kQsm5Z2lPE9G2xDWEbAUVjYuBrdXi7z8UK37L96Yir99Ii9VtlFlN3PL/9Zpudx0loPpjoPGvFDLayyk8vhF62n5fCZRffjj5lCGl9tEdVxOh6bhaXQmgpcmipaUN0bB/nIkmTz18qM52tt19ItX/7VhCn504uYAB1BQfJc7fZs+vaNx+Fr3phdPep0mwWYG+dPb5fVQ8nRJn6w05FbZe2lTl9bpob/VJzw9OZRvIv2pyPj+vNAdUBTSYeSdxOBLk3Ns0Lyn7ApJtsCN78mtOHMH3lf4QntPTkjXxIbhckaFWK4vw/UgbmT4dw8GM5Z0N9au3+6uuERisuNkZm66r/EEaOqpxSy20WKDzLxNx1pVrrQbZJnbyDCME3qx17N12kj60YqZ0LyutTqMONR9VWQLwUiNigwbQw+1U5oXPGkdYvX/Pl02VJ8oeHIzw4JMwvmuDr5VHaR+pnAuacbwhQjuQCj9CLRg467BhkChiotcBcvM/5SaVh0OV2emqfAB+5+hywzGbcvbpuyHgXQ=
+  - secure: ToS2Ub6l/oYIpmDlL23UbCHsApupypLG82vIPLxEp9lymd9jFJ0ur/Df4H67D9L3M180927Ml+bBAB/XLCKy7Mn2wE/KNXKYKvboWMiDRlDuOou/vhPyB0I721SMWcgXOR3A7Eas2kf3ksTrpKSyE+rogPdTnfrHgcQMzJ0QsNMvJTkzidZztJfDnuzNKMJcn+RDHZANetuIei3x6OXJ1ccW7AExvDLX0biXhMMsD5OYMcFxW2AnaWr2b6EAU3vTt3a21wur0LWZUnXE/lQyhaX5aBUmt7UzT7A7wSxdHjkna1WBqoH+VXh2yrVG5hGX1qvmR5bIOkUaqBfCZNbUmRIt5aSj2Xbe/lmfVuF2QM6T7uVToT1SWIqIb3EfQlNAuKy1tyabEy+g5p/WPAOY2ADLxExB0yNVfoeL30Oa3unNj4W5tJHtzodep+acF3pkJqIEcUrb1RybrQFrJEqKPM/zJaUGafURSDx/3kyw/Yfwu9MR6x43o1tzzfWmLjcauvMb+FpFqytlYfZtzaaEw5KoCmA/Y/ldGpmw7gwIDC6IDp10i+jCs6VMFtXBo0/kAVARgdL/r55sKdH+5DNC0N9HvFuQ+w81jIFdKKCSZI26Y0VSO/k820kSTNIvaQAhXEGGm+jQ4DoAfU5xE8P6iBvrXpcm/mYq4QQFsvnwi0c=
+  - AWS_S3_BUCKET_NAME : paulsflashcards
