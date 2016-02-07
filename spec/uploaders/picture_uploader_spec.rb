@@ -4,12 +4,15 @@ require "carrierwave/test/matchers"
 describe PictureUploader do
   include CarrierWave::Test::Matchers
 
+  let!(:user) { create(:user, email: "email@test.com") }
+  let!(:deck) { create(:deck, user: user) }
+
   before(:all) do
     PictureUploader.enable_processing = true
   end
 
   before(:each) do
-    @card = create(:card)
+    @card = create(:card, user: user, deck: deck )
     @uploader = PictureUploader.new(@card, :picture)
     @uploader.store!(File.open("#{Rails.root}/spec/images/123.jpg"))
   end

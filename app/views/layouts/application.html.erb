@@ -24,7 +24,9 @@
       <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li><%= link_to 'Все карточки', cards_path %></li>
-          <li><%= link_to 'Добавить карточку', new_card_path%></li>
+          <li><%= link_to 'Добавить карточку', new_card_path %></li>
+          <li><%= link_to 'Создать колоду', new_deck_path %></li>
+          <li><%= link_to 'Просмотреть все колоды', decks_path %></li>
          <% if current_user %>
             <li><%= link_to 'Profile', edit_user_path(current_user),
                                        id: "profile" %></li>

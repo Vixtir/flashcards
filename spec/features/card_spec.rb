@@ -13,25 +13,48 @@ describe "Card", type: "feature" do
     expect(page).to have_content "Поздарвляю ты знаешь"
   end
 
-  it "succesfull add card" do
+  it "user have no deck" do
     visit new_card_path
-    fill_in "card_original_text", with: "HoMe"
-    fill_in "card_translated_text", with: "дом"
-    click_button "Create Card"
-    expect(page).to have_content "Карточка успешно создана"
+    expect(page).to have_content "У вас еще нет колоды"
   end
 
-  it "failed add card" do
-    visit new_card_path
-    fill_in "card_original_text", with: "HoMe"
-    fill_in "card_translated_text", with: "hOmE"
-    click_button "Create Card"
-    expect(page).to have_content "Только на кириллице"
+  describe "User with deck" do
+    let!(:user) { create(:user, email: "email@test.com") }
+    let!(:deck) { create(:deck, user: user) }
+
+    before(:each) do
+      login("email@test.com", "password")
+    end
+
+    it "normally login" do
+      visit new_card_path
+      expect(page).to have_content "New card"
+    end
+
+    it "succesfull add card" do
+      visit new_card_path
+      fill_in "card_original_text", with: "HoMe"
+      fill_in "card_translated_text", with: "дом"
+      click_button "Create Card"
+      expect(page).to have_content "Карточка успешно создана"
+    end
+
+    it "has Test value for select box" do
+      visit new_card_path
+      expect(page).to have_content "Тест"
+    end
   end
 
   describe "answer" do
+    let!(:user) { create(:user, email: "email@test.com") }
+    let!(:deck) { create(:deck, user: user) }
+
     before(:each) do
-      @card = create(:card, user: user)
+      login("email@test.com", "password")
+    end
+
+    before(:each) do
+      @card = create(:card, user: user, deck: deck)
     end
 
     it "visit" do
@@ -54,3 +77,4 @@ describe "Card", type: "feature" do
     end
   end
 end
+

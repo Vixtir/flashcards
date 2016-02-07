@@ -2,7 +2,11 @@
 <% if @card.errors.any? %>
   <%= render "card_errors"%>
 <% end %>
-<%= render "form"%>
+<% if current_user.decks.any? %>
+  <%= render "form"%>
+<% else %>
+  <p>У вас еще нет колоды, необходимо ее <%= link_to 'создать', new_deck_path %></p>
+<% end %>
 
 
 

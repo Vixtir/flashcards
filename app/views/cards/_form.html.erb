@@ -2,6 +2,7 @@
   <%= simple_form_for @card do |f| %>
     <%= f.input :original_text, label: "Оригинал", placeholder: "Example" %>
     <%= f.input :translated_text, label: "Перевод", placeholder: "Пример" %>
+    <%= f.input :deck_id, collection: @decks , selected: @decks.first%>
     <%= f.file_field :picture%>
     <%= f.button :submit%> 
   <% end %>
