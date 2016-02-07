@@ -12,7 +12,7 @@ describe PictureUploader do
   end
 
   before(:each) do
-    @card = create(:card, user: user, deck: deck )
+    @card = create(:card, user: user, deck: deck)
     @uploader = PictureUploader.new(@card, :picture)
     @uploader.store!(File.open("#{Rails.root}/spec/images/123.jpg"))
   end

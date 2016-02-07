@@ -77,4 +77,3 @@ describe "Card", type: "feature" do
     end
   end
 end
-

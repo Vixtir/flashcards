@@ -9,7 +9,7 @@ class Deck < ActiveRecord::Base
   validates :title, presence: true
 
   def active?
-    self.status == "active"
+    status == "active"
   end
 
   def activate
