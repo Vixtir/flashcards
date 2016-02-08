@@ -26,7 +26,7 @@ RSpec.describe Deck, type: :model do
       deck1.save
       deck2.activate
       deck2.save
-      expect(user.decks.active.count).to be == 1
+      expect(user.decks.active.count).to eq 1
     end
   end
 end

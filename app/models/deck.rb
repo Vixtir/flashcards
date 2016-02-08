@@ -3,7 +3,7 @@ class Deck < ActiveRecord::Base
 
   has_many :cards, dependent: :destroy
 
-  scope :active, -> { where("status =?", "active") }
+  scope :active, -> { where(status: :active) }
 
   validates :user, presence: true
   validates :title, presence: true
@@ -13,7 +13,7 @@ class Deck < ActiveRecord::Base
   end
 
   def activate
-    Deck.update_all("status = 'inactive'")
+    Deck.update_all(status: :inactive)
     self.status = "active"
   end
 end
