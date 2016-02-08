@@ -3,7 +3,7 @@
         Первый в мире удобный менеджер флеш-карточек. Именно так.
 </p>
 <% if current_user %>
-  <%= render partial: "cards/check", locals: {card: @card}%> 
+  <%= render partial: "cards/check", locals: {card: @card, deck: @deck}%> 
 <% end %>
 
 

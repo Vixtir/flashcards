@@ -5,11 +5,12 @@ class CardsController < ApplicationController
 
   def new
     @card = current_user.cards.build
+    @decks = current_user.decks
   end
 
   def create
     @card = current_user.cards.create(card_params)
-
+    @card.deck = Deck.find(params[:card][:deck_id])
     if @card.save
       flash[:success] = "Карточка успешно создана"
       redirect_to cards_path
@@ -56,7 +57,7 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text, :picture)
+    params.require(:card).permit(:original_text, :translated_text, :picture, :deck_id)
   end
 
   def correct_user_card

@@ -5,6 +5,7 @@
     <th>ID</th>
     <th>Original text</th>
     <th>Translated text</th>
+    <th>Deck</th>
     <th>Review date</th>
     <th>Actions</th>
   </tr>
@@ -14,6 +15,7 @@
       <td><%= card.id %></td>
       <td><%= card.original_text %></td>
       <td><%= card.translated_text %></td>
+      <td><%= card.deck.title %></td>
       <td><%= card.review_date.strftime("%d/%m/%Y")%></td>
       <td>
         <%=link_to 'Редактировать', edit_card_path(card)%>

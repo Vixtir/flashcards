@@ -1,6 +1,6 @@
 class Card < ActiveRecord::Base
   belongs_to :user
-
+  belongs_to :deck
   mount_uploader :picture, PictureUploader
 
   scope :rand_word, -> { order("RANDOM()").limit(1) }
@@ -15,6 +15,7 @@ class Card < ActiveRecord::Base
             :translated_text,
             :review_date,
             :user_id,
+            :deck_id,
             presence: true
   validates :translated_text, format: { with: /\A[а-яА-Я]+\z/,
                                         message: "Только на кириллице" }
