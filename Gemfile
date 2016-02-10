@@ -12,6 +12,7 @@ gem 'rmagick'
 gem 'fog', require: 'fog/aws'
 gem 'travis'
 gem 'rails_12factor', group: :production
+gem 'puma'
 #gem 'fog-aws'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
