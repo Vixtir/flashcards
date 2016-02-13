@@ -24,7 +24,7 @@ RSpec.describe Card, type: "model" do
 
   describe "check word" do
     it "has right answer" do
-      @card.bucket = 2 
+      @card.bucket = 2
       @card.review_date = Time.zone.now
       @card.save
       t = @card.review_date
