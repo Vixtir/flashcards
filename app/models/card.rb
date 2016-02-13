@@ -38,12 +38,57 @@ class Card < ActiveRecord::Base
   end
 
   def add_review_date
-    update_attribute(:review_date, Time.zone.now + 3.day)
+    update_attribute(:review_date, add_time(self.bucket))
+  end
+
+  def add_time(bucket)
+    case bucket
+      when 1
+        Time.zone.now + 12.hour
+      when 2
+        Time.zone.now + 3.day
+      when 3
+        Time.zone.now + 7.day
+      when 4
+        Time.zone.now + 2.week
+      when 5
+        Time.zone.now + 4.week
+   end
+  end
+
+  def reset_attempt
+    update_attribute(:attempt, 0)
+  end
+
+  def add_attempt
+    update_attribute(:attempt, self.attempt + 1)
+  end
+
+  def up_bucket_level
+    if bucket < 5 
+      update_attribute(:bucket, self.bucket + 1)
+    end
+  end
+
+  def down_bucket_level
+    if bucket > 1
+      update_attribute(:bucket, self.bucket - 1)
+    end
   end
 
   def check_word(answer)
     if translated_text == answer.mb_chars.downcase.to_s
       add_review_date
+      up_bucket_level
+      reset_attempt
+    else
+      if attempt == 3
+        down_bucket_level
+        reset_attempt
+      else
+        add_attempt
+      end
+      false
     end
   end
 end
