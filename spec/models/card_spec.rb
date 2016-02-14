@@ -24,10 +24,17 @@ RSpec.describe Card, type: "model" do
 
   describe "check word" do
     it "has right answer" do
+      @card.review_date = Time.zone.now
       @card.save
       t = @card.review_date
       @card.check_word("доМ")
-      expect(@card.review_date).to eq(t + 3.day)
+      expect(@card.review_date).to be_within(1.second).of t + 12.hour 
+    end
+
+    it "right answer up level card" do
+      @card.save
+      @card.check_word("дом")
+      expect(@card.bucket).to eq 2
     end
 
     it "has wrong answer" do
@@ -35,6 +42,20 @@ RSpec.describe Card, type: "model" do
       t = @card.review_date
       @card.check_word("неправильный")
       expect(@card.review_date).to eq(t)
+    end
+
+    it "wrong answer up attemts" do
+      @card.save
+      @card.check_word("неправильный")
+      expect(@card.attempt).to eq 1
+    end
+
+    it "3 wrong answers down cards bucket level" do
+      @card.bucket = 3
+      @card.attempt = 2
+      @card.save
+      @card.check_word("неправильный ответ")
+      expect(@card.bucket).to eq 2
     end
 
     it "is return only need checked words" do
