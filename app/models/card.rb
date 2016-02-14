@@ -53,7 +53,7 @@ class Card < ActiveRecord::Base
       Time.zone.now + 2.week
     when 5
       Time.zone.now + 4.week
-   end
+    end
   end
 
   def reset_attempt
