@@ -34,7 +34,7 @@ class Card < ActiveRecord::Base
   end
 
   def set_review_date
-    self.review_date = Time.zone.today
+    self.review_date = Time.zone.now
   end
 
   def add_review_date
@@ -76,18 +76,22 @@ class Card < ActiveRecord::Base
     end
   end
 
+  def check_attempt_count
+    if attempt == 2
+      down_bucket_level
+      reset_attempt
+    else
+      add_attempt
+    end
+  end
+
   def check_word(answer)
     if translated_text == answer.mb_chars.downcase.to_s
       add_review_date
       up_bucket_level
       reset_attempt
     else
-      if attempt == 3
-        down_bucket_level
-        reset_attempt
-      else
-        add_attempt
-      end
+      check_attempt_count
       false
     end
   end
