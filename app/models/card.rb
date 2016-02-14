@@ -38,21 +38,21 @@ class Card < ActiveRecord::Base
   end
 
   def add_review_date
-    update_attribute(:review_date, add_time(bucket))
+    update_attribute(:review_date, Time.zone.now + add_time(bucket))
   end
 
   def add_time(bucket)
     case bucket
     when 1
-      Time.zone.now + 12.hour
+      12.hour
     when 2
-      Time.zone.now + 3.day
+      3.day
     when 3
-      Time.zone.now + 7.day
+      7.day
     when 4
-      Time.zone.now + 2.week
+      2.week
     when 5
-      Time.zone.now + 4.week
+      4.week
     end
   end
 
@@ -61,12 +61,12 @@ class Card < ActiveRecord::Base
   end
 
   def add_attempt
-    update_attribute(:attempt, attempt + 1)
+    increment(:attempt)
   end
 
   def up_bucket_level
     if bucket < 5 
-      update_attribute(:bucket, bucket + 1)
+      increment(:bucket)
     end
   end
 

@@ -28,7 +28,7 @@ RSpec.describe Card, type: "model" do
       @card.save
       t = @card.review_date
       @card.check_word("доМ")
-      expect(@card.review_date.hour).to eq(t.hour + 12)
+      expect(@card.review_date).to be_within(1.second).of t + 12.hour 
     end
 
     it "right answer up level card" do
