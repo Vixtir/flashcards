@@ -1,3 +1,5 @@
+require 'levenshtein'
+
 class Card < ActiveRecord::Base
   belongs_to :user
   belongs_to :deck
@@ -86,7 +88,7 @@ class Card < ActiveRecord::Base
   end
 
   def check_word(answer)
-    if translated_text == answer.mb_chars.downcase.to_s
+    if Levenshtein.distance(translated_text, answer.mb_chars.downcase.to_s) <= 1
       add_review_date
       up_bucket_level
       reset_attempt
