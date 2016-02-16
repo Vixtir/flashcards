@@ -66,14 +66,21 @@ describe "Card", type: "feature" do
       visit root_path
       fill_in "answer", with: @card.translated_text
       click_button "Проверить"
-      expect(page).to have_content "Right"
+      expect(page).to have_content "Правильно"
+    end
+
+    it "right answer with 1 error" do
+      visit root_path
+      fill_in "answer", with: "дои"
+      click_button "Проверить"
+      expect(page).to have_content "Ответ верный, но ты допустил ошибку"
     end
 
     it "wrong answer" do
       visit root_path
       fill_in "answer", with: "wrong_answer"
       click_button "Проверить"
-      expect(page).to have_content "Wrong"
+      expect(page).to have_content "Неправильно"
     end
   end
 end

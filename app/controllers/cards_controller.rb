@@ -44,12 +44,17 @@ class CardsController < ApplicationController
 
   def check
     @card = Card.find(params[:card][:id])
-
+    @answer = params[:answer]
     if @card.check_word(params[:answer])
-      flash[:success] = "Right"
-      redirect_to root_path
+      if lev_dist == 0
+        flash[:success] = "Правильно"
+        redirect_to root_path
+      else
+        flash.now[:success] = "Ответ верный, но ты допустил ошибку в слове"
+        render "_right_answer"
+      end
     else
-      flash[:danger] = "Wrong"
+      flash.now[:danger] = "Неправильно"
       render "home/index"
     end
   end
@@ -69,5 +74,9 @@ class CardsController < ApplicationController
 
   def current_card
     @card = Card.find(params[:id])
+  end
+
+  def lev_dist
+    @card.lev_dist(params[:answer])
   end
 end
