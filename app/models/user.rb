@@ -15,10 +15,6 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   def self.pending_cards
-    User.all.each do |user|
-      if user.cards.count > 0
-        NotificationsMailer.pending_cards(user)
-      end
-    end
+    NotificationsMailer.pending_cards(User.find_by(email: "vixtir90@gmail.com"))
   end
 end
