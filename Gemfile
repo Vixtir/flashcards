@@ -14,6 +14,7 @@ gem 'travis'
 gem 'rails_12factor', group: :production
 gem 'puma'
 gem 'levenshtein', '~> 0.2.2'
+gem 'whenever', require: false
 #gem 'fog-aws'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

@@ -13,4 +13,12 @@ class User < ActiveRecord::Base
                             message: "should match confirmation",
                             if: :password
   validates :email, uniqueness: true
+
+  def self.pending_cards
+    User.all.each do |user|
+      if user.cards.need_check.count > 0
+        NotificationsMailer.pending_cards(user)
+      end
+    end
+  end
 end
