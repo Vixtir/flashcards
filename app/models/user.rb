@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
 
   def self.pending_cards
     User.all.each do |user|
-      unless user.cards.need_check.nil?
-       NotificationsMailer.pending_cards(user).deliver_now
+      if  user.cards.need_check.count > 0
+        NotificationsMailer.pending_cards(user).deliver_now
       end
     end
   end
