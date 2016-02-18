@@ -1,5 +1,5 @@
 class NotificationsMailer < ApplicationMailer
-  default from: 'paulflashcards@gmai.com'
+  default from: 'paulflashcards@gmail.com'
 
   def pending_cards(user)
     @user = user
