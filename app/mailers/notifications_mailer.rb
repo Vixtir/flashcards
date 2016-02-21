@@ -3,6 +3,6 @@ class NotificationsMailer < ApplicationMailer
 
   def pending_cards(user)
     @user = user
-    email = mail to: @user.email, subject: "You have unchecked card"
+    mail to: @user.email, subject: "You have unchecked card"
   end
 end
