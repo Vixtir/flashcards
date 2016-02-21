@@ -15,10 +15,8 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   def self.pending_cards
-    User.all.each do |user|
-      if user.cards.need_check.count > 0
-        NotificationsMailer.pending_cards(user).deliver_now
-      end
+    User.joins(:cards).where('cards.review_date < ?', Time.zone.now).each do |user|
+      NotificationsMailer.pending_cards(user).deliver_now
     end
   end
 end
