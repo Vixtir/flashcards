@@ -13,4 +13,10 @@ class User < ActiveRecord::Base
                             message: "should match confirmation",
                             if: :password
   validates :email, uniqueness: true
+
+  def self.pending_cards
+    User.joins(:cards).where('cards.review_date < ?', Time.zone.now).group("users.id").each do |user|
+      NotificationsMailer.pending_cards(user).deliver_now
+    end
+  end
 end
