@@ -1,5 +1,5 @@
 <%= simple_form_for @deck do |f| %>
-   <%= f.input :title, label: "Название колоды", placeholder: "Животные" %>
-   <%= f.button :submit%> 
+   <%= f.input :title, label: t('decks.new.title'), placeholder: "Животные" %>
+   <%= f.button :submit, t('decks.new.button') %> 
 <% end %>
 

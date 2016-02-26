@@ -2,12 +2,12 @@
  
 <table class="table">
   <tr>
-    <th>ID</th>
-    <th>Original text</th>
-    <th>Translated text</th>
-    <th>Deck</th>
-    <th>Review date</th>
-    <th>Actions</th>
+    <th><%= t('cards.table.id') %></th>
+    <th><%= t('cards.table.o_text') %></th>
+    <th><%= t('cards.table.t_text') %></th>
+    <th><%= t('cards.tale.deck') %></th>
+    <th><%= t('cards.table.review_date') %></th>
+    <th><%= t('cards.table.actions') %></th>
   </tr>
  
   <% @cards.each do |card| %>
@@ -18,10 +18,10 @@
       <td><%= card.deck.title %></td>
       <td><%= card.review_date.strftime("%d/%m/%Y")%></td>
       <td>
-        <%=link_to 'Редактировать', edit_card_path(card)%>
-        <%=link_to 'Удалить',card_path(card),
+        <%=link_to t('cards.action.edit'), edit_card_path(card)%>
+        <%=link_to t('cards.action.delete'),card_path(card),
            method: :delete,
-           data: { confirm: "Are you sure?" } %>  
+           data: { confirm: t('cards.action.confirm') } %>  
       </td>
     </tr>
   <% end %>

@@ -20,4 +20,78 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  main:
+    brand: "Flashcards"
+    all_cards: "All card's"
+    add_card: "Add card"
+    create_deck: "Create deck"
+    decks: "Deck's"
+    facebook_login: "Login with Facebook"
+    profile: "Profile"
+    logout: "Logout"
+  cards:
+    action:
+      edit: "Edit"
+      delete: "Delete"
+      confirm: "Are you sure?"
+    table:
+      id: "ID"
+      o_text: "Original text"
+      t_text: "Translated text"
+      deck: "Deck"
+      review_date: "Review date"
+      actions: "Actions"
+    form:
+      o_text: "Please enter the original text"
+      t_text: "Please enter translate"
+      deck: "Choose the deck"
+      button: "Create card"
+    stuck: "Stuck?"
+    next_card: "Next card"
+    check: "Check"
+    no_deck:
+      text: "Please, create the deck first."
+      link: "Create the deck"
+  know_all_cards:
+    text: "Congratulation! You know all your cards!"
+    link: "Add new"
+  decks:
+    table:
+      id: "Deck id"
+      title: "Title"
+      card_count: "Cards"
+      unchecked_card_count: "Unchecked cards"
+      status: "Status"
+      trigger: "Change status"
+      link:
+        active: "Activate"
+        deactive: "Deactivate"
+    new:
+      title: "Please enter the decks title"
+      button: "Create the deck"
+  home:
+    text: "Convenient flash cards first manager in the world. Exactly."
+  flash:
+    card:
+      create: "The card has been created"
+      edit: "The card has been edited"
+      right: "Right answer"
+      error: "You have some error in word"
+      wrong: "Wrong answer"
+      wrong_user: "You can't edit this card"
+    user:
+      create: "Welcome!"
+      edit: "Account has been changed"
+    session:
+      login: "Welcome!"
+      wrong_login: "Login failed!"
+      logout: "Goodbye!"
+  not_registred:
+    text: "You are not registred?"
+    link: "Register"
+  notifications_mailer:
+    pending_cards:
+      subject: "You have unchecked cards"
+      welcome: "Dear, %{user}"
+      text: "Count of your unchecked cards today: %{count}"
+      link: "Login"

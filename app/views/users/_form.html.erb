@@ -11,6 +11,7 @@
       <%= f.input :password_confirmation,
                   required: true,
                   input_html: { minlength: 3 } %><br />
+      <%= f.select :language, I18n.available_locales %><br />
       <%= f.button :submit %>
     </div>
   <% end %>

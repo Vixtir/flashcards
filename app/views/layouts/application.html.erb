@@ -18,23 +18,25 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to 'Флэшкарточкер', root_path, class: "navbar-brand"%>
+        <%= link_to t('main.brand'), root_path, class: 'navbar-brand' %>
       </div>
   <!-- Collection of nav links, forms, and other content for toggling -->
       <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><%= link_to 'Все карточки', cards_path %></li>
-          <li><%= link_to 'Добавить карточку', new_card_path %></li>
-          <li><%= link_to 'Создать колоду', new_deck_path %></li>
-          <li><%= link_to 'Просмотреть все колоды', decks_path %></li>
+          <li><%= link_to t('main.all_cards'), cards_path %></li>
+          <li><%= link_to t('main.add_card'), new_card_path %></li>
+          <li><%= link_to t('main.create_deck'), new_deck_path %></li>
+          <li><%= link_to t('main.decks'), decks_path %></li>
          <% if current_user %>
-            <li><%= link_to 'Profile', edit_user_path(current_user),
+            <li><%= link_to t('main.profile'), edit_user_path(current_user),
                                        id: "profile" %></li>
-            <li><%= link_to 'Log out', :logout,
+            <li><%= link_to t('main.logout'), :logout,
                                        method: :post, id: "logout" %></li>
           <% else %>
-            <li><%= link_to 'Login with Facebook',
+            <li><%= link_to t('main.facebook_login'),
                     auth_at_provider_path(:provider => :facebook) %></li>
+          <%= link_to_unless_current "English", locale: "en" %> |
+          <%= link_to_unless_current "Русский", locale: "ru" %>
           <% end %>
         </ul>
       </div>

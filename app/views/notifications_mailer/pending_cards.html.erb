@@ -1,4 +1,4 @@
-<p>Уважаемый, <%= @user.email %></p>
-<p>Сегодня у тебя <%= @user.cards.count %> не проверенных карточек.</p>
-<p><%= link_to 'Заходи', root_url %>, проверь свои знания!</p>
-</p>Удачи!<p>
+<p><%= t('notifications_mailer.pending_cards.welcome', user: @user.email) %></p>
+<p><%= t('notifications_mailer.pending_cards.text', count: @user.cards.count) %></p>
+<p><%= link_to t('notifications_mailer.pending_cards.link'), root_url %></p>
+

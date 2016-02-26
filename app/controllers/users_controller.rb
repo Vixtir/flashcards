@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.save
       auto_login(@user)
       redirect_to root_path
-      flash[:success] = "User has been created"
+      flash[:success] = t('flash.user.create') 
     else
       render action: "new"
     end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     external_user
     if @user.update_attributes(user_params)
-      redirect_to(root_path, notice: "Password has been changed")
+      redirect_to(root_path, notice: t('flash.user.edit'))
     else
       render :action => "edit"
     end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :language)
   end
 
   def external_user

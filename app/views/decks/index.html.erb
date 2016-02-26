@@ -1,11 +1,11 @@
 <table class="table">
   <tr>
-    <th>ID</th>
-    <th>Title</th>
-    <th>Всего карточек</th>
-    <th>Непроверенных карточек</th>
-    <th>Текущий статус</th>
-    <th>Переключение</th>
+    <th><%= t('decks.table.id') %></th>
+    <th><%= t('decks.table.title') %></th>
+    <th><%= t('decks.table.card_count') %></th>
+    <th><%= t('decks.table.unchecked_card_count') %></th>
+    <th><%= t('decks.table.status') %></th>
+    <th><%= t('decks.table.Change status') %></th>
   </tr>
   <% @decks.each do |deck| %>
     <tr>
@@ -15,9 +15,9 @@
       <td><%= deck.cards.need_check.count %>
       <td><%= deck.status %></td>
       <% unless deck.active? %>
-        <td><%= link_to "Активировать", activate_path(deck), method: :patch %></td>
+        <td><%= link_to t('decks.table.link.active'), activate_path(deck), method: :patch %></td>
       <% else %>
-        <td><%= link_to "Деактивировать", activate_path(deck), method: :patch %></td>
+        <td><%= link_to t('decks.table.link.deactive'), activate_path(deck), method: :patch %></td>
       <% end %>
     </tr>
   <% end %>
