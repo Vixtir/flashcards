@@ -12,7 +12,7 @@ class CardsController < ApplicationController
     @card = current_user.cards.create(card_params)
     @card.deck = Deck.find(params[:card][:deck_id])
     if @card.save
-      flash[:success] = t('flash.card.create') 
+      flash[:success] = t('flash.card.create')
       redirect_to cards_path
     else
       render "new"

@@ -4,7 +4,6 @@ describe "User", type: "feature" do
   let(:user) { FactoryGirl.build(:user) }
 
   describe "enter on the site first time" do
-
     it "default english language" do
       visit root_path
       click_link("English")

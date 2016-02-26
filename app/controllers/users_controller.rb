@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.save
       auto_login(@user)
       redirect_to root_path
-      flash[:success] = t('flash.user.create') 
+      flash[:success] = t('flash.user.create')
     else
       render action: "new"
     end
