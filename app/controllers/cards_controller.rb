@@ -12,7 +12,7 @@ class CardsController < ApplicationController
     @card = current_user.cards.create(card_params)
     @card.deck = Deck.find(params[:card][:deck_id])
     if @card.save
-      flash[:success] = "Карточка успешно создана"
+      flash[:success] = t('flash.card.create')
       redirect_to cards_path
     else
       render "new"
@@ -32,6 +32,7 @@ class CardsController < ApplicationController
   def update
     if @card.update(card_params)
       redirect_to cards_path
+      flash[:success] = t('flash.card.edit')
     else
       render "edit"
     end
@@ -47,14 +48,14 @@ class CardsController < ApplicationController
     @answer = params[:answer]
     if @card.check_word(params[:answer])
       if lev_dist == 0
-        flash[:success] = "Правильно"
+        flash[:success] = t('flash.card.right')
         redirect_to root_path
       else
-        flash.now[:success] = "Ответ верный, но ты допустил ошибку в слове"
+        flash.now[:success] = t('flash.card.error')
         render "_right_answer"
       end
     else
-      flash.now[:danger] = "Неправильно"
+      flash.now[:danger] = t('flash.card.wrong')
       render "home/index"
     end
   end
@@ -67,7 +68,7 @@ class CardsController < ApplicationController
 
   def correct_user_card
     unless current_card.user == current_user
-      flash[:danger] = "U cant edit not ur cards"
+      flash[:danger] = t('flash.card.wrong_user')
       redirect_to cards_path
     end
   end

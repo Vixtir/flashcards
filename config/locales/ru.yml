@@ -1,0 +1,98 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ru:
+  main:
+    brand: "Флешкарточкер"
+    all_cards: "Карточки"
+    add_card: "Добавить карточку"
+    create_deck: "Создать колоду"
+    decks: "Колоды"
+    facebook_login: "Зайти через Facebook"
+    profile: "Профиль"
+    logout: "Выйти"
+  cards:
+    action:
+      edit: "Редактировать"
+      delete: "Удалить"
+      confirm: "Вы уерены?"
+    table:
+      id: "ID"
+      o_text: "Оригинальный текст"
+      t_text: "Перевод"
+      deck: "Колода"
+      review_date: "Дата проверки"
+      actions: "Действия"
+    form:
+      o_text: "Оригинальный текст"
+      t_text: "Перевод"
+      deck: "Выберите колоду"
+      button: "Создать карточку"
+    stuck: "Застрял?"
+    next_card: "Следующая карта"
+    check: "Проверить"
+    no_deck:
+      text: "Пожалуйста, создайте колоду!"
+      link: "Создать колоду"
+
+  know_all_cards:
+    text: "Поздравляем! Ты знаешь все свои карточки!"
+    link: "Добавь новые"
+  decks:
+    table:
+      id: "Номер колоды"
+      title: "Название"
+      card_count: "Карточки"
+      unchecked_card_count: "Непроверенных карточек"
+      status: "Статус"
+      trigger: "Изменить статус"
+      link:
+        active: "Активировать"
+        deactive: "Деактивировать"
+    new:
+      title: "Название колоды"
+      button: "Создать колоду"
+  home:
+    text: "Первый в мире удобный менеджер флеш-карточек. Именно так."
+  flash:
+    card:
+      create: "Карточка успешно создана"
+      edit: "Карточка отредактирована"
+      right: "Ответ верный"
+      error: "Ответ зачитан, но допущены ошибки"
+      wrong: "Ответ неверный"
+      wrong_user: "Вы не можете редактировать чужие карточки"
+    user:
+      create: "Добро пожаловать!"
+      edit: "Аккаунт был успешно отредактирован"
+    session:
+      login: "Добро пожаловать!"
+      wrong_login: "Вход не удался"
+      logout: "Досвидания!"
+  not_registred:
+    text: "Не зарегестрированы?"
+    link: "Регистрация"
+  notifications_mailer:
+    pending_cards:
+      subject: "Проверь свои знания"
+      welcome: "Уважаемый, %{user}"
+      text: "Количество готовых к проверке карточек на сегодня: %{count}"
+      link: "Зайти"

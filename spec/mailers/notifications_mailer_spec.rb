@@ -6,7 +6,7 @@ RSpec.describe NotificationsMailer, type: :mailer do
     let(:mail) { NotificationsMailer.pending_cards(user) }
 
     it 'subject' do
-      expect(mail.subject).to eq('You have unchecked card')
+      expect(mail.subject).to eq('Проверь свои знания')
     end
 
     it 'mail to' do

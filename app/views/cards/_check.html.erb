@@ -13,16 +13,14 @@
                        class:  "form-control",
                        autofocus: true  %></br>
     
-    <%= f.submit "Проверить", class: "btn btn-primary" %>
+    <%= f.submit t('cards.check'), class: "btn btn-primary" %>
   <% end %>
-  <p class = "text-center"> Застрял? <%= link_to "Next card", root_path%></p>
+  <p class = "text-center"> <%= t('cards.stuck')%> <%= link_to t('cards.next_card'), root_path%></p>
+  
   <% else %>
     <div class = "alert alert-info text-center">
-      Поздарвляю ты знаешь все слова из словаря, <%= link_to "добавь новые", new_card_path %> или дождись когда пройдет срок обновления.
+      <%= t('know_all_cards.text')%> <%= link_to t('know_all_cards.link'), new_card_path %>
     </div>
   <% end %>
 </div>
-
-
-
 

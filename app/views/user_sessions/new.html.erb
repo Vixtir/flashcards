@@ -1,5 +1,6 @@
 
 <div class="container text-center">
   <%= render partial: "form" %>
-  <p> U are not registred? <%= link_to "Register", new_user_path, id: "register" %> now</p>
+  <p> <%= t('not_registred.text') %>
+      <%= link_to t('not_registred.link'), new_user_path %> </p>
 </div>

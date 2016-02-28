@@ -16,6 +16,7 @@ gem 'puma'
 gem 'levenshtein', '~> 0.2.2'
 gem 'whenever', require: false
 gem 'mailgun_rails'
+gem 'http_accept_language'
 #gem 'fog-aws'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

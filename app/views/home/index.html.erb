@@ -1,6 +1,6 @@
 
 <p class = "text-center"  style="font-size: 22px;">
-        Первый в мире удобный менеджер флеш-карточек. Именно так.
+  <%= t('home.text')%> 
 </p>
 <% if current_user %>
   <%= render partial: "cards/check", locals: {card: @card, deck: @deck}%> 
