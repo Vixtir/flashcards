@@ -41,6 +41,8 @@ ru:
       deck: "Колода"
       review_date: "Дата проверки"
       actions: "Действия"
+      i: "i"
+      ef: "EF"
     form:
       o_text: "Оригинальный текст"
       t_text: "Перевод"

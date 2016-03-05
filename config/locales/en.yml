@@ -41,6 +41,8 @@ en:
       deck: "Deck"
       review_date: "Review date"
       actions: "Actions"
+      i: "i"
+      ef: "EF"
     form:
       o_text: "Please enter the original text"
       t_text: "Please enter translate"

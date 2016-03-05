@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/:locale' => 'home#index'
     root "home#index"
     post "check" => "cards#check"
+    post "grade" => "cards#grade"
     resources :cards
     resources :users
     resources :user_sessions

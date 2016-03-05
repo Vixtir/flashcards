@@ -46,24 +46,26 @@ class CardsController < ApplicationController
   def check
     @card = Card.find(params[:card][:id])
     @answer = params[:answer]
-    if @card.check_word(params[:answer])
-      if lev_dist == 0
+    @s = Supermemo.new(@card)
+    @grade = @s.grade(@answer)
+    #if @card.check_word(@answer)
+      if @grade == 5 
         flash[:success] = t('flash.card.right')
         redirect_to root_path
-      else
+      elsif @grade == 4
         flash.now[:success] = t('flash.card.error')
         render "_right_answer"
+      else
+        flash.now[:danger] = t('flash.card.wrong')
+        render "home/index"
       end
-    else
-      flash.now[:danger] = t('flash.card.wrong')
-      render "home/index"
-    end
+    Supermemo.new(@card).check_word(@card.i, @card.ef, @answer)
   end
 
   private
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text, :picture, :deck_id, :bucket, :attempt)
+    params.require(:card).permit(:original_text, :translated_text, :picture, :deck_id, :bucket, :i, :ef)
   end
 
   def correct_user_card
@@ -77,7 +79,4 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
   end
 
-  def lev_dist
-    @card.lev_dist(params[:answer])
-  end
 end
