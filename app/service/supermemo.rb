@@ -15,7 +15,6 @@ class Supermemo
     when 4 then 1
     else 0
     end
-
   end
 
   def next_ef(ef, grade)
