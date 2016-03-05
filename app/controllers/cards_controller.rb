@@ -48,18 +48,18 @@ class CardsController < ApplicationController
     @answer = params[:answer]
     @s = Supermemo.new(@card)
     @grade = @s.grade(@answer)
-    #if @card.check_word(@answer)
-      if @grade == 5 
-        flash[:success] = t('flash.card.right')
-        redirect_to root_path
-      elsif @grade == 4
-        flash.now[:success] = t('flash.card.error')
-        render "_right_answer"
-      else
-        flash.now[:danger] = t('flash.card.wrong')
-        render "home/index"
-      end
-    Supermemo.new(@card).check_word(@card.i, @card.ef, @answer)
+    # if @card.check_word(@answer)
+    if @grade == 5
+      flash[:success] = t('flash.card.right')
+      redirect_to root_path
+    elsif @grade == 4
+      flash.now[:success] = t('flash.card.error')
+      render "_right_answer"
+    else
+      flash.now[:danger] = t('flash.card.wrong')
+      render "home/index"
+    end
+    @s.check_word(@card.i, @card.ef, @answer)
   end
 
   private

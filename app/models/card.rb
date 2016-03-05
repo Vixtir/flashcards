@@ -67,7 +67,7 @@ class Card < ActiveRecord::Base
  # end
 
  # def up_bucket_level
- #   if bucket < 5 
+ #   if bucket < 5
  #     increment(:bucket)
  #   end
  # end

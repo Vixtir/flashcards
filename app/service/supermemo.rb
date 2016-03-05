@@ -30,14 +30,14 @@ class Supermemo
     end
   end
 
- def interval(i, ef, grade)
-   return 0 if grade < 3
+  def interval(i, ef, grade)
+    return 0 if grade < 3
 
-   case i
-   when 1 then 1.day
-   when 2 then 6.day
-   else ((i - 1) * ef).round.day
-   end
+    case i
+    when 1 then 1.day
+    when 2 then 6.day
+    else ((i - 1) * ef).round.day
+    end
   end
 
   def next_interval(i, ef, grade)
