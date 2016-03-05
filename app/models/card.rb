@@ -1,4 +1,4 @@
-#require 'levenshtein'
+# require 'levenshtein'
 
 class Card < ActiveRecord::Base
   belongs_to :user
@@ -87,17 +87,17 @@ class Card < ActiveRecord::Base
  #   end
  # end
 
-  #def check_word(answer)
-   # if lev_dist(answer) <= 1
-   #   true
-    #  add_review_date
-    #  up_bucket_level
-    #  reset_attempt
-    #else
-    #  check_attempt_count
-    #  false
-    #end
-  #end
+ # def check_word(answer)
+ #   if lev_dist(answer) <= 1
+ #     true
+ #     add_review_date
+ #     up_bucket_level
+ #     reset_attempt
+ #   else
+ #     check_attempt_count
+ #     false
+ #   end
+ # end
 
  # def lev_dist(answer)
  #   Levenshtein.distance(translated_text, answer.mb_chars.downcase.to_s)

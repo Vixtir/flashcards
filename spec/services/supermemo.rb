@@ -5,7 +5,7 @@ RSpec.describe Supermemo, type: "service" do
   let!(:deck) { create(:deck, user: user) }
 
   before :each do
-    @card = build(:card, user: user, deck: deck, ef: 2.5 , i: 1, attempt: 1)
+    @card = build(:card, user: user, deck: deck, ef: 2.5, i: 1, attempt: 1)
     @s = Supermemo.new(@card)
   end
 
@@ -29,7 +29,7 @@ RSpec.describe Supermemo, type: "service" do
         it "change ef" do
           old_ef = @card.ef
           grade = 5
-          expect(@s.next_ef(@card.ef, grade)).to eq(old_ef+(0.1-(5-grade)*(0.08+(5-grade)*0.02)))
+          expect(@s.next_ef(@card.ef, grade)).to eq(old_ef + (0.1 - (5-grade) * (0.08 + (5 - grade) * 0.02)))
         end
 
         it "change i + 1" do
@@ -51,7 +51,7 @@ RSpec.describe Supermemo, type: "service" do
     describe "wrong answer" do
       it "add attempt" do
         @s.check_word(@card.i, @card.ef, "чтото")
-        expect(@card.attempt).to eq(2)       
+        expect(@card.attempt).to eq(2)
       end
     end
 

@@ -1,7 +1,6 @@
 require 'levenshtein'
 
 class Supermemo
-
   def initialize(card)
     @card = card
   end
@@ -16,11 +15,11 @@ class Supermemo
     when 4 then 1
     else 0
     end
-    
+
   end
 
   def next_ef(ef, grade)
-    @card.ef = [ef+(0.1-(5-grade)*(0.08+(5-grade)*0.02)), 1.3].max
+    @card.ef = [ef + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02)), 1.3].max
   end
 
   def next_i(i, grade)
@@ -32,13 +31,13 @@ class Supermemo
   end
 
  def interval(i, ef, grade)
-    return 0 if grade < 3
+   return 0 if grade < 3
 
-    case i
-    when 1 then 1.day
-    when 2 then 6.day
-    else ((i-1) * ef).round.day
-    end
+   case i
+   when 1 then 1.day
+   when 2 then 6.day
+   else ((i - 1) * ef).round.day
+   end
   end
 
   def next_interval(i, ef, grade)
