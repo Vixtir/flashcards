@@ -37,13 +37,13 @@ class HomeController < ApplicationController
 
   private
 
-    def set_card
-      if current_user.decks.active.any?
-        @deck = current_user.decks.active.first
-        @card = @deck.cards.need_check.rand_word.first
-      else
-        @card = current_user.cards.need_check.rand_word.first
-      end
+  def set_card
+    if current_user.decks.active.any?
+      @deck = current_user.decks.active.first
+      @card = @deck.cards.need_check.rand_word.first
+    else
+      @card = current_user.cards.need_check.rand_word.first
     end
-    
+  end
+
 end
