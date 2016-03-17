@@ -53,6 +53,8 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
 end
 
 gem 'factory_girl_rails', "~> 4.0"

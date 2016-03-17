@@ -1,19 +1,43 @@
 require 'levenshtein'
 
 class Supermemo
-  def initialize(card)
+  def initialize(card, time)
     @card = card
+    @time = time
   end
-
-  def grade(answer)
-    return 5 if lev_dist(answer) == 0 && @card.attempt == 1
-    return 4 if lev_dist(answer) == 1 && @card.attempt == 1
+/
+  def grade(answer, time)
+    return 5 if lev_dist(answer) == 0 && @card.attempt == 1 && time < 20
+    return 4 if lev_dist(answer) == 1 && @card.attempt == 1 && time < 40
 
     case @card.attempt
     when 2 then 3
     when 3 then 2
     when 4 then 1
     else 0
+    end
+  end
+/
+  def grade(answer, time)
+    if time < 15
+      return 5 if lev_dist(answer) == 0 && @card.attempt == 1
+      return 4 if lev_dist(answer) == 1 && @card.attempt == 1
+
+      case @card.attempt
+      when 2 then 3
+      when 3 then 2
+      when 4 then 1
+      else 0
+      end
+    else
+      return 4 if lev_dist(answer) == 0 && @card.attempt == 1
+      return 3 if lev_dist(answer) == 1 && @card.attempt == 1
+
+      case @card.attempt
+      when 2 then 2
+      when 3 then 1
+      else 0  
+      end
     end
   end
 
@@ -43,11 +67,11 @@ class Supermemo
     @card.review_date = @card.review_date + interval(i, ef, grade)
   end
 
-  def check_word(i, ef, answer)
+  def update_card(i, ef, answer, time)
     if lev_dist(answer) <= 1
-      next_interval(i, ef, grade(answer))
-      @card.ef = next_ef(ef, grade(answer))
-      @card.i = next_i(i, grade(answer))
+      next_interval(i, ef, grade(answer, time))
+      @card.ef = next_ef(ef, grade(answer, time))
+      @card.i = next_i(i, grade(answer, time))
       @card.attempt = 1
     else
       @card.attempt += 1

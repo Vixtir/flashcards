@@ -6,23 +6,32 @@ RSpec.describe Supermemo, type: "service" do
 
   before :each do
     @card = build(:card, user: user, deck: deck, ef: 2.5, i: 1, attempt: 1)
-    @s = Supermemo.new(@card)
+    @s = Supermemo.new(@card, @time)
   end
 
   describe "check word" do
     describe "new word" do
       describe "has rignt answer" do
-        it "grade 5" do
+        it "grade 5 if time < 15" do
+          @time = 14
           @card.i = 1
           @card.save
-          expect(@s.grade('дом')).to eq(5)
+          expect(@s.grade('дом', @time)).to eq(5)
+        end
+
+        it "grade 4 if time >= 15" do
+          @time = 15
+          @card.i = 1
+          @card.save
+          expect(@s.grade('дом', @time)).to eq(4)
         end
 
         it "change review time on 1 day" do
           @card.review_date = Time.zone.now
           @card.save
+          @time = 14
           t = @card.review_date
-          @s.check_word(@card.i, @card.ef, 'дом')
+          @s.update_card(@card.i, @card.ef, 'дом' , @time)
           expect(@card.review_date).to be_within(1.second).of t + 1.day
         end
 
@@ -39,7 +48,8 @@ RSpec.describe Supermemo, type: "service" do
 
       describe "answer with 1 wrong letter" do
         it "grade 4" do
-          expect(@s.grade('дон')).to eq(4)
+          @time = 14
+          expect(@s.grade('дон', @time = 14)).to eq(4)
         end
 
         it "ef dont changing" do
@@ -50,7 +60,8 @@ RSpec.describe Supermemo, type: "service" do
 
     describe "wrong answer" do
       it "add attempt" do
-        @s.check_word(@card.i, @card.ef, "чтото")
+        @time = 14
+        @s.update_card(@card.i, @card.ef, "чтото", @time)
         expect(@card.attempt).to eq(2)
       end
     end
@@ -63,7 +74,7 @@ RSpec.describe Supermemo, type: "service" do
       end
 
       it "grade < 4" do
-        expect(@s.grade('авыа')).to be < 4
+        expect(@s.grade('авыа', @time = 14)).to be < 4
       end
 
       it "down ef level" do

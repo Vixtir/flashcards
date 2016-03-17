@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     patch "/decks/:id" => "decks#activate", :as => :activate
     get '/:locale' => 'home#index'
     root "home#index"
-    post "check" => "cards#check"
+    post "check" => "home#check"
+    get "answer" => "home#answer"
     post "grade" => "cards#grade"
     resources :cards
     resources :users

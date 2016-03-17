@@ -3,6 +3,7 @@ require "spec_helper"
 require "capybara/rspec"
 
 describe "Card", type: "feature" do
+
   let!(:user) { create(:user, email: "email@test.com") }
   before(:each) do
     login("email@test.com", "password")
@@ -59,28 +60,35 @@ describe "Card", type: "feature" do
 
     it "visit" do
       visit root_path
-      expect(page).to have_content "Home"
+      expect(page).to have_button(I18n.t('home.button'))
     end
 
-    it "right answer" do
-      visit root_path
-      fill_in "answer", with: @card.translated_text
-      click_button "Проверить"
-      expect(page).to have_content I18n.t('flash.card.right')
-    end
+    describe "check" do
 
-    it "right answer with 1 error" do
-      visit root_path
-      fill_in "answer", with: "дои"
-      click_button "Проверить"
-      expect(page).to have_content I18n.t('flash.card.error')
-    end
+      before(:each) do
+        visit root_path
+        click_button I18n.t('home.button')
+        wait_for_ajax
+      end
 
-    it "wrong answer" do
-      visit root_path
-      fill_in "answer", with: "wrong_answer"
-      click_button "Проверить"
-      expect(page).to have_content I18n.t('flash.card.wrong')
+      it "right answer", :js => true do
+        fill_in "answer", with: @card.translated_text
+        click_button I18n.t('cards.check')
+        wait_for_ajax # This is new!
+        expect(page).to have_content I18n.t('know_all_cards.text')
+      end
+
+      it "right answer with 1 error",:js => true do
+        fill_in "answer", with: "дои"
+        click_button I18n.t('cards.check')
+        expect(page).to have_content I18n.t('know_all_cards.text')
+      end
+
+      it "wrong answer",:js => true do
+        fill_in "answer", with: "wrong_answer"
+        click_button I18n.t('cards.check')
+        expect(page).to have_content I18n.t('flash.card.wrong')
+      end
     end
   end
 end

@@ -15,3 +15,57 @@
 //= require turbolinks
 //= require_tree .
 
+$(document).on('page:change', function(){
+	$('.check_page').on('click', '.start_exam', function(){
+	  	
+		d = 0;
+      	setInterval(myTimer, 1000);
+      	
+      	function myTimer() {
+      		  
+        	  d = d + 1;
+        	  document.getElementById("timer").innerHTML = d;
+      	};
+
+		$(this).hide();
+		$.ajax('/', {
+			type: 'GET',
+			dataType: 'json',
+			success: function(response){
+				var id = response.id;
+				var question = response.original_text;
+				$('.card_id').html(id);
+				$('.question').html(question);
+				$('.question_form').fadeIn();
+			}
+		})
+	});
+
+    $('.question_form').on('click', '.check_button', function(){
+		var id = $('.card_id').text();
+		var answer = $('.answer').val();
+		var time = $('#timer').text();
+		$('.alert').hide();
+		$.ajax('/check', {
+			type: 'POST',
+			dataType: 'json',
+			data: { "id": id, "answer": answer, "time": time },
+			success: function(response){
+				d = 0; 
+				if( response.card ){
+					var n_id = response.card.id;
+				  	var n_answer = response.card.original_text;
+				
+					$('.card_id').html(n_id);
+					$('.question').html(n_answer);
+					$('.alert').html(response.message).fadeIn();
+					
+				} else {
+					$('.question_form').hide();
+					$('.alert').fadeIn(100);
+				}
+
+			}
+		})
+	});
+})
