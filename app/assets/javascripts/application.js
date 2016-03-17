@@ -18,14 +18,13 @@
 $(document).on('page:change', function(){
 	$('.check_page').on('click', '.start_exam', function(){
 	  	
-		var d = 0;
+		d = 0;
       	setInterval(myTimer, 1000);
       	
-      	function myTimer() {
-      		  
-        	  d = d + 1;
-        	  document.getElementById("timer").innerHTML = d;
-      	};
+      	function myTimer() {     		  
+        	  window.d = d + 1;
+        	  document.getElementById('timer').innerHTML = window.d;
+      	}
 
 		$(this).hide();
 		$.ajax('/', {
@@ -38,7 +37,7 @@ $(document).on('page:change', function(){
 				$('.question').html(question);
 				$('.question_form').fadeIn();
 			}
-		})
+		});
 	});
 
     $('.question_form').on('click', '.check_button', function(){
@@ -49,9 +48,9 @@ $(document).on('page:change', function(){
 		$.ajax('/check', {
 			type: 'POST',
 			dataType: 'json',
-			data: { "id": id, "answer": answer, "time": time },
+			data: { 'id': id, 'answer': answer, 'time': time },
 			success: function(response){
-				d = 0; 
+				window.d = 0; 
 				if( response.card ){
 					var nId = response.card.id;
 				  	var nAnswer = response.card.original_text;
