@@ -31,14 +31,14 @@ RSpec.describe Supermemo, type: "service" do
           @card.save
           @time = 14
           t = @card.review_date
-          @s.update_card(@card.i, @card.ef, 'дом' , @time)
+          @s.update_card(@card.i, @card.ef, 'дом', @time)
           expect(@card.review_date).to be_within(1.second).of t + 1.day
         end
 
         it "change ef" do
           old_ef = @card.ef
           grade = 5
-          expect(@s.next_ef(@card.ef, grade)).to eq(old_ef + (0.1 - (5-grade) * (0.08 + (5 - grade) * 0.02)))
+          expect(@s.next_ef(@card.ef, grade)).to eq(old_ef + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02)))
         end
 
         it "change i + 1" do

@@ -5,19 +5,7 @@ class Supermemo
     @card = card
     @time = time
   end
-/
-  def grade(answer, time)
-    return 5 if lev_dist(answer) == 0 && @card.attempt == 1 && time < 20
-    return 4 if lev_dist(answer) == 1 && @card.attempt == 1 && time < 40
 
-    case @card.attempt
-    when 2 then 3
-    when 3 then 2
-    when 4 then 1
-    else 0
-    end
-  end
-/
   def grade(answer, time)
     if time < 15
       return 5 if lev_dist(answer) == 0 && @card.attempt == 1
@@ -47,9 +35,9 @@ class Supermemo
 
   def next_i(i, grade)
     if grade < 3
-      return 1
+      1
     else
-      return i + 1
+      i + 1
     end
   end
 
