@@ -18,7 +18,7 @@
 $(document).on('page:change', function(){
 	$('.check_page').on('click', '.start_exam', function(){
 	  	
-		d = 0;
+		var d = 0;
       	setInterval(myTimer, 1000);
       	
       	function myTimer() {
