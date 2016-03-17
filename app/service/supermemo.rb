@@ -24,7 +24,7 @@ class Supermemo
       case @card.attempt
       when 2 then 2
       when 3 then 1
-      else 0  
+      else 0
       end
     end
   end

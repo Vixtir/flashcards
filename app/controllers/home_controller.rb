@@ -19,17 +19,17 @@ class HomeController < ApplicationController
     set_card
     if grade == 5
       respond_to do |format|
-        msg = { status: :ok , message: I18n.t('flash.card.right'), card: @card }
+        msg = { status: :ok, message: I18n.t('flash.card.right'), card: @card }
         format.json { render json: msg }
       end
     elsif grade == 4
       respond_to do |format|
-        msg = { status: :ok , message: I18n.t('flash.card.error'), card: @card }
+        msg = { status: :ok, message: I18n.t('flash.card.error'), card: @card }
         format.json { render json: msg }
       end
     else
       respond_to do |format|
-        msg = { status: :ok , message: I18n.t('flash.card.wrong'), card: @card }
+        msg = { status: :ok, message: I18n.t('flash.card.wrong'), card: @card }
         format.json { render json: msg }
       end
     end
@@ -45,6 +45,5 @@ class HomeController < ApplicationController
         @card = current_user.cards.need_check.rand_word.first
       end
     end
-
+    
 end
-
