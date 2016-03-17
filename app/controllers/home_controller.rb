@@ -45,5 +45,4 @@ class HomeController < ApplicationController
       @card = current_user.cards.need_check.rand_word.first
     end
   end
-
 end
