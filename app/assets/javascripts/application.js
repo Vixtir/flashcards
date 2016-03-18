@@ -28,7 +28,7 @@ $(document).on('page:change', function(){
 
 		$(this).hide();
 		$.ajax('/', {
-			type: 'GET',
+			type: 'POST',
 			dataType: 'json',
 			success: function(response){
 				var id = response.id;
