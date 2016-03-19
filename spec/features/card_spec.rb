@@ -59,15 +59,13 @@ describe "Card", type: "feature" do
 
     it "visit" do
       visit root_path
-      expect(page).to have_button(I18n.t('home.button'))
+      expect(page).to have_button(I18n.t('cards.check'))
     end
 
     describe "check" do
 
       before(:each) do
         visit root_path
-        click_button I18n.t('home.button')
-        wait_for_ajax
       end
 
       it "right answer", js: true do

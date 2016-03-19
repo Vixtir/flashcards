@@ -7,26 +7,7 @@ class Supermemo
   end
 
   def grade(answer, time)
-    if time < 15
-      return 5 if lev_dist(answer) == 0 && @card.attempt == 1
-      return 4 if lev_dist(answer) == 1 && @card.attempt == 1
-
-      case @card.attempt
-      when 2 then 3
-      when 3 then 2
-      when 4 then 1
-      else 0
-      end
-    else
-      return 4 if lev_dist(answer) == 0 && @card.attempt == 1
-      return 3 if lev_dist(answer) == 1 && @card.attempt == 1
-
-      case @card.attempt
-      when 2 then 2
-      when 3 then 1
-      else 0
-      end
-    end
+    gr = [(5 - lev_dist(answer) - (@card.attempt - 1)) - time/20, 0].max
   end
 
   def next_ef(ef, grade)
@@ -34,11 +15,7 @@ class Supermemo
   end
 
   def next_i(i, grade)
-    if grade < 3
-      1
-    else
-      i + 1
-    end
+    grade < 3 ? 1 : i + 1
   end
 
   def interval(i, ef, grade)

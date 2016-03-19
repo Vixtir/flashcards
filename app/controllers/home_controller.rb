@@ -3,10 +3,10 @@ class HomeController < ApplicationController
   before_action :set_card, only: [:index]
 
   def index
-    respond_to do |format|
-      format.html
-      format.json { render json: @card }
-    end
+  #  respond_to do |format|
+  #    format.html
+  #    format.json { render json: @card }
+  #  end
   end
 
   def check
@@ -29,43 +29,33 @@ class HomeController < ApplicationController
     Card.find(params[:id])
   end
 
-  def user_answer
-    params[:answer]
-  end
-
-  def question_time
-    params[:time].to_i
-  end
-
   def supermemo
-    Supermemo.new(card_for_check, question_time)
+    Supermemo.new(card_for_check, params[:time].to_i)
   end
 
   def update_card
-    supermemo.update_card(card_for_check.i, card_for_check.ef, user_answer, question_time)
+    supermemo.update_card(card_for_check.i, card_for_check.ef, params[:answer], params[:time].to_i)
   end
 
   def card_grade
-    supermemo.grade(user_answer, question_time)
+    supermemo.grade(params[:answer], params[:time].to_i)
+  end
+
+  def message(alert)
+    respond_to do |format|
+        msg = { status: :ok, message: alert, card: @card }
+        format.json { render json: msg }
+    end
   end
 
   def make_response
     set_card
     if card_grade == 5
-      respond_to do |format|
-        msg = { status: :ok, message: I18n.t('flash.card.right'), card: @card }
-        format.json { render json: msg }
-      end
+      message(I18n.t('flash.card.right'))
     elsif card_grade == 4
-      respond_to do |format|
-        msg = { status: :ok, message: I18n.t('flash.card.error'), card: @card }
-        format.json { render json: msg }
-      end
+      message(I18n.t('flash.card.error'))
     else
-      respond_to do |format|
-        msg = { status: :ok, message: I18n.t('flash.card.wrong'), card: @card }
-        format.json { render json: msg }
-      end
+      message(I18n.t('flash.card.wrong'))
     end
   end
 end

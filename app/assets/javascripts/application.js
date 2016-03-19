@@ -16,31 +16,15 @@
 //= require_tree .
 
 $(document).on('page:change', function(){
-	$('.check_page').on('click', '.start_exam', function(){
-	  	
-		window.d = 0;
-      	setInterval(myTimer, 1000);
+	window.d = 0;
+    setInterval(myTimer, 1000);
       	
-      	function myTimer() {     		  
-        	  window.d = d + 1;
-        	  document.getElementById('timer').innerHTML = window.d;
-      	}
+    function myTimer() {     		  
+      window.d = d + 1;
+      document.getElementById('timer').innerHTML = window.d;
+    }
 
-		$(this).hide();
-		$.ajax('/', {
-			type: 'POST',
-			dataType: 'json',
-			success: function(response){
-				var id = response.id;
-				var question = response.original_text;
-				$('.card_id').html(id);
-				$('.question').html(question);
-				$('.question_form').fadeIn();
-			}
-		});
-	});
-
-    $('.question_form').on('click', '.check_button', function(){
+	$('.question_form').on('click', '.check_button', function(){
 		var id = $('.card_id').text();
 		var answer = $('.answer').val();
 		var time = $('#timer').text();
