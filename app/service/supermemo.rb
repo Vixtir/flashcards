@@ -7,7 +7,7 @@ class Supermemo
   end
 
   def grade(answer, time)
-    gr = [(5 - lev_dist(answer) - (@card.attempt - 1)) - time/20, 0].max
+    [(5 - lev_dist(answer) - (@card.attempt - 1)) - time / 20, 0].max
   end
 
   def next_ef(ef, grade)

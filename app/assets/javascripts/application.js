@@ -20,7 +20,7 @@ $(document).on('page:change', function(){
     setInterval(myTimer, 1000);
       	
     function myTimer() {     		  
-      window.d = d + 1;
+      window.d++;
       document.getElementById('timer').innerHTML = window.d;
     }
 

@@ -3,10 +3,6 @@ class HomeController < ApplicationController
   before_action :set_card, only: [:index]
 
   def index
-  #  respond_to do |format|
-  #    format.html
-  #    format.json { render json: @card }
-  #  end
   end
 
   def check
@@ -43,8 +39,8 @@ class HomeController < ApplicationController
 
   def message(alert)
     respond_to do |format|
-        msg = { status: :ok, message: alert, card: @card }
-        format.json { render json: msg }
+      msg = { status: :ok, message: alert, card: @card }
+      format.json { render json: msg }
     end
   end
 
