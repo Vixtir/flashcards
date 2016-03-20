@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
     patch "/decks/:id" => "decks#activate", :as => :activate
     get '/:locale' => 'home#index'
-    post '/' => "home#index"
     root "home#index"
     post "check" => "home#check"
 

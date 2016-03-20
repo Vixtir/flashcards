@@ -16,38 +16,34 @@
 //= require_tree .
 
 $(document).on('page:change', function(){
-	window.d = 0;
+	var d = 0;
     setInterval(myTimer, 1000);
       	
     function myTimer() {     		  
-      window.d++;
-      document.getElementById('timer').innerHTML = window.d;
+      document.getElementById('timer').innerHTML = d++;
+    }
+
+    var clear = function(){
+    	d = 0;
     }
 
 	$('.question_form').on('click', '.check_button', function(){
-		var id = $('.card_id').text();
-		var answer = $('.answer').val();
-		var time = $('#timer').text();
 		$('.alert').hide();
 		$.ajax('/check', {
 			type: 'POST',
 			dataType: 'json',
-			data: { 'id': id, 'answer': answer, 'time': time },
+			data: { 'id': $('.card_id').text(), 'answer': $('.answer').val(), 'time': $('#timer').text() },
 			success: function(response){
-				window.d = 0; 
 				if( response.card ){
-					var nId = response.card.id;
-				  	var nAnswer = response.card.original_text;
-				
-					$('.card_id').html(nId);
-					$('.question').html(nAnswer);
+					clear()
+					$('.card_id').html(response.card.id);
+					$('.question').html(response.card.original_text);
 					$('.alert').html(response.message).fadeIn();
 					
 				} else {
 					$('.question_form').hide();
 					$('.alert').fadeIn(100);
 				}
-
 			}
 		});
 	});
