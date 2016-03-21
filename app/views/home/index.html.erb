@@ -1,9 +1,22 @@
-
-<p class = "text-center"  style="font-size: 22px;">
+<div class="check_page">
+<p class = "text-center main"  style="font-size: 22px;">
   <%= t('home.text')%> 
 </p>
-<% if current_user %>
-  <%= render partial: "cards/check", locals: {card: @card, deck: @deck}%> 
-<% end %>
 
-
+<% if current_user.cards.need_check.any? %>
+	<div class="alert alert-info text-center" style="display: none;">
+      <%= t('know_all_cards.text')%> <%= link_to t('know_all_cards.link'), new_card_path %>
+	</div>
+	<div class="question_form text-center">
+		<p id="timer" style="display: none;"></p>
+		<p class="card_id" style="display: none"><%= @card.id %></p>
+		<h1 class="question"><%= @card.original_text %></h1>
+		<input class="answer form-control" id='answer' placeholder="Your answer..."></input><br/>
+		<button class="check_button btn btn-success"><%= t('cards.check')%></button>
+	</div>
+<% else %>
+	<div class = "alert alert-info text-center" id="click">
+      <%= t('know_all_cards.text')%> <%= link_to t('know_all_cards.link'), new_card_path %>
+    </div>
+<%end %>
+</div>
