@@ -1,4 +1,5 @@
 require "capybara/rspec"
+require 'capybara/webkit/matchers'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
