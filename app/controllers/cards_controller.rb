@@ -43,23 +43,6 @@ class CardsController < ApplicationController
     redirect_to cards_path
   end
 
-  def check
-    @card = Card.find(params[:card][:id])
-    @answer = params[:answer]
-    if @card.check_word(params[:answer])
-      if lev_dist == 0
-        flash[:success] = t('flash.card.right')
-        redirect_to root_path
-      else
-        flash.now[:success] = t('flash.card.error')
-        render "_right_answer"
-      end
-    else
-      flash.now[:danger] = t('flash.card.wrong')
-      render "home/index"
-    end
-  end
-
   private
 
   def card_params
@@ -77,7 +60,4 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
   end
 
-  def lev_dist
-    @card.lev_dist(params[:answer])
-  end
 end
