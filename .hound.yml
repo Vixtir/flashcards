@@ -3,14 +3,3 @@ StringLiterals:
 
 LineLength:
   Max: 180
-
-VariableName:
-  Description: 'Use the configured style when naming variables.'
-  # Valid values are: snake_case, camelCase
-  EnforcedStyle: snake_case
-  Enabled: false
-MethodName:
-  # Valid values are: snake_case, camelCase
-  Description: 'Use the configured style when naming methods.'
-  EnforcedStyle: snake_case
-  Enabled: false

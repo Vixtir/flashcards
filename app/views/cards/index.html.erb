@@ -1,5 +1,5 @@
 <h1>Cards</h1>
-
+ 
 <table class="table">
   <tr>
     <th><%= t('cards.table.id') %></th>
@@ -8,10 +8,8 @@
     <th><%= t('cards.tale.deck') %></th>
     <th><%= t('cards.table.review_date') %></th>
     <th><%= t('cards.table.actions') %></th>
-    <th><%= t('cards.table.i')%></th>
-    <th><%= t('cards.table.ef')%></th>
   </tr>
-
+ 
   <% @cards.each do |card| %>
     <tr>
       <td><%= card.id %></td>
@@ -25,8 +23,6 @@
            method: :delete,
            data: { confirm: t('cards.action.confirm') } %>  
       </td>
-      <td><%= card.i %></td>
-      <td><%= card.ef %></td>
     </tr>
   <% end %>
 </table>
