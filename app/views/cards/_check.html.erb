@@ -3,7 +3,8 @@
   <% if current_user.cards.need_check.any? %>
     <h1><%= card.original_text %></h1>
     <%= image_tag(card.picture_url) if card.picture?%><br />
-    <%= simple_form_for :card, html: {id: :card_answer}, :url => {:action => "check", :controller => "cards"} do |f| %>
+    <%= simple_form_for :card, html: {id: :card_answer}, :url => {:action => "check", 
+                                      :controller => "cards"} do |f| %>
     <%= f.hidden_field :id, :value => card.id %>
     <%= text_field_tag :answer, 
                        nil , 
@@ -11,7 +12,8 @@
                        autocomplete: "off",
                        class:  "form-control",
                        autofocus: true  %></br>
-    <%= f.submit t('cards.check'), class: "btn btn-primary", id: "check_btn" %>
+    
+    <%= f.submit t('cards.check'), class: "btn btn-primary" %>
   <% end %>
   <p class = "text-center"> <%= t('cards.stuck')%> <%= link_to t('cards.next_card'), root_path%></p>
   
