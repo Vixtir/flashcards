@@ -12,10 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
-$(document).on('page:change', function(){
+$(document).ready(function(){
+
 	var d = 0;
     setInterval(myTimer, 1000);
       	
@@ -28,7 +28,7 @@ $(document).on('page:change', function(){
     }
 
 	$('.question_form').on('click', '.check_button', function(){
-		$('.alert').hide();
+		$('.alert').hide(200);
 		$.ajax('/check', {
 			type: 'POST',
 			dataType: 'json',
@@ -38,11 +38,11 @@ $(document).on('page:change', function(){
 					clear()
 					$('.card_id').html(response.card.id);
 					$('.question').html(response.card.original_text);
-					$('.alert').html(response.message).fadeIn();
+					$('#check-alert').html(response.message).fadeIn();
 					
 				} else {
-					$('.question_form').hide();
-					$('.alert').fadeIn(100);
+					$('.question_form').hide(200);
+					$('.alert').fadeIn(200);
 				}
 			}
 		});
