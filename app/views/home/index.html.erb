@@ -4,7 +4,7 @@
 </p>
 
 <% if current_user.cards.need_check.any? %>
-	<div class="alert alert-info text-center" style="display: none;">
+	<div class="alert alert-info text-center" id="check-alert" style="display: none;">
       <%= t('know_all_cards.text')%> <%= link_to t('know_all_cards.link'), new_card_path %>
 	</div>
 	<div class="question_form text-center">
