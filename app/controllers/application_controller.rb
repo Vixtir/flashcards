@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def not_authenticated
-    redirect_to login_path
+    redirect_to home_login_path
     flash[:info] = "Please login or register!!!"
   end
 

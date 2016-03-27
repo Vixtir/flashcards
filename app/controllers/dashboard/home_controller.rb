@@ -1,7 +1,8 @@
-class HomeController < ApplicationController
+class Dashboard::HomeController < ApplicationController
   before_action :require_login
   before_action :set_card, only: [:index]
-
+  layout "application"
+  
   def index
   end
 

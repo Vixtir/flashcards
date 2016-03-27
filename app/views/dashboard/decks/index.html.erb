@@ -15,9 +15,9 @@
       <td><%= deck.cards.need_check.count %>
       <td><%= deck.status %></td>
       <% unless deck.active? %>
-        <td><%= link_to t('decks.table.link.active'), activate_path(deck), method: :patch %></td>
+        <td><%= link_to t('decks.table.link.active'), dashboard_activate_path(deck), method: :patch %></td>
       <% else %>
-        <td><%= link_to t('decks.table.link.deactive'), activate_path(deck), method: :patch %></td>
+        <td><%= link_to t('decks.table.link.deactive'), dashboard_activate_path(deck), method: :patch %></td>
       <% end %>
     </tr>
   <% end %>

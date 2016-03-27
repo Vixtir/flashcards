@@ -1,5 +1,5 @@
 <div class="container text-center">
-  <%= simple_form_for @user do |f| %>
+  <%= simple_form_for @user, url: dashboard_user_path do |f| %>
     <div class="field">
       <%= f.input :email,
                   required: true,

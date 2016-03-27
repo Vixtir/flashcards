@@ -1,4 +1,4 @@
-<%= simple_form_for @deck do |f| %>
+<%= simple_form_for @deck, url: dashboard_decks_path do |f| %>
    <%= f.input :title, label: t('decks.new.title'), placeholder: "Животные" %>
    <%= f.button :submit, t('decks.new.button') %> 
 <% end %>

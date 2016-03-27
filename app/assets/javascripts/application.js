@@ -29,7 +29,7 @@ $(document).ready(function(){
 
 	$('.question_form').on('click', '.check_button', function(){
 		$('.alert').hide(200);
-		$.ajax('/check', {
+		$.ajax('dashboard/check', {
 			type: 'POST',
 			dataType: 'json',
 			data: { 'id': $('.card_id').text(), 'answer': $('.answer').val(), 'time': $('#timer').text() },

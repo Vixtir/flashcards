@@ -14,7 +14,7 @@ describe "Card", type: "feature" do
   end
 
   it "user have no deck" do
-    visit new_card_path
+    visit new_dashboard_card_path
     expect(page).to have_content I18n.t('cards.no_deck.text')
   end
 
@@ -27,12 +27,12 @@ describe "Card", type: "feature" do
     end
 
     it "normally login" do
-      visit new_card_path
+      visit new_dashboard_card_path
       expect(page).to have_content I18n.t('main.add_card')
     end
 
     it "succesfull add card" do
-      visit new_card_path
+      visit new_dashboard_card_path
       fill_in "card_original_text", with: "HoMe"
       fill_in "card_translated_text", with: "дом"
       click_button "Создать карточку"
@@ -40,7 +40,7 @@ describe "Card", type: "feature" do
     end
 
     it "has Test value for select box" do
-      visit new_card_path
+      visit new_dashboard_card_path
       expect(page).to have_content "Тест"
     end
   end

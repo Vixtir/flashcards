@@ -20,8 +20,8 @@
       <td><%= card.deck.title %></td>
       <td><%= card.review_date.strftime("%d/%m/%Y")%></td>
       <td>
-        <%=link_to t('cards.action.edit'), edit_card_path(card)%>
-        <%=link_to t('cards.action.delete'),card_path(card),
+        <%=link_to t('cards.action.edit'), edit_dashboard_card_path(card)%>
+        <%=link_to t('cards.action.delete'),dashboard_card_path(card),
            method: :delete,
            data: { confirm: t('cards.action.confirm') } %>  
       </td>

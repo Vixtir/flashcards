@@ -68,7 +68,7 @@ RSpec.configure do |config|
   end
 
   def login(email, password)
-    visit login_path
+    visit home_login_path
     fill_in :email, with: email
     fill_in :password, with: password
     click_button "Login"

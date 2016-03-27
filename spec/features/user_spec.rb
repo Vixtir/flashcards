@@ -49,7 +49,7 @@ describe "User", type: "feature" do
     end
 
     it "path has html5 validation" do
-      visit new_user_path
+      visit new_home_user_path
       expect(page).to have_xpath("//input[@required='required']")
     end
   end

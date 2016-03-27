@@ -1,4 +1,4 @@
-<%= simple_form_for @card do |f| %>
+<%= simple_form_for @card, url: dashboard_cards_path do |f| %>
   <%= f.input :original_text, label: t('cards.form.o_text'), placeholder: "Example" %>
   <%= f.input :translated_text, label: t('cards.form.t_text'), placeholder: "Пример" %>
   <%= f.input :deck_id, collection: @decks , selected: @decks.first%>
