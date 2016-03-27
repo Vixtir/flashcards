@@ -1,6 +1,6 @@
 class Home::UserSessionsController < ApplicationController
   skip_before_action :require_login, except: [:destroy]
-  
+
   layout 'home'
   def new
     @user = User.new
