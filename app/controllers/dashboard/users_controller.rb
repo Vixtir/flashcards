@@ -1,25 +1,6 @@
-class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:index, :new, :create]
+class Dashboard::UsersController < ApplicationController
+  before_action :require_login
   before_action :external_user, only: [:edit]
-
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.create(user_params)
-    if @user.save
-      auto_login(@user)
-      redirect_to root_path
-      flash[:success] = t('flash.user.create')
-    else
-      render action: "new"
-    end
-  end
-
-  def show
-    @user = User.find(params[:id])
-  end
 
   def edit
     @user = current_user
@@ -29,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     external_user
     if @user.update_attributes(user_params)
-      redirect_to(root_path, notice: t('flash.user.edit'))
+      redirect_to(dashboard_root_path, notice: t('flash.user.edit'))
     else
       render :action => "edit"
     end

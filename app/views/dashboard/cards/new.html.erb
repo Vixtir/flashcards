@@ -4,7 +4,7 @@
 <% if current_user.decks.any? %>
   <%= render "form"%>
 <% else %>
-  <p><%= t('cards.no_deck.text') %> <%= link_to t('cards.no_deck.link'), new_deck_path %></p>
+  <p><%= t('cards.no_deck.text') %> <%= link_to t('cards.no_deck.link'), new_dashboard_deck_path %></p>
 <% end %>
 
 

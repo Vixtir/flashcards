@@ -1,0 +1,18 @@
+<div class="container text-center">
+  <%= simple_form_for @user,url: home_users_path do |f| %>
+    <div class="field">
+      <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  placeholder: "example@gmail.com",
+                  class: 'form-control',
+                  pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" %> 
+      <%= f.input :password, required: true %><br />
+      <%= f.input :password_confirmation,
+                  required: true,
+                  input_html: { minlength: 3 } %><br />
+      <%= f.select :language, I18n.available_locales %><br />
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+<div>

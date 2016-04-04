@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def not_authenticated
-    redirect_to login_path
-    flash[:info] = "Please login or register!!!"
+    redirect_to home_login_path
+    flash[:info] = t('main.auth_error')
   end
 
   def default_url_options(options = {})

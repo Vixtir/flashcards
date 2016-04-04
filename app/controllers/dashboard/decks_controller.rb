@@ -1,4 +1,4 @@
-class DecksController < ApplicationController
+class Dashboard::DecksController < ApplicationController
   before_action :require_login
 
   def new
@@ -9,7 +9,7 @@ class DecksController < ApplicationController
     @deck = current_user.decks.create(decks_params)
 
     if @deck.save
-      redirect_to root_path
+      redirect_to dashboard_root_path
       flash[:success] = "A new deck has been created"
     else
       render "new"
@@ -24,7 +24,7 @@ class DecksController < ApplicationController
     @deck = Deck.find(params[:id])
     @deck.activate
     @deck.save!
-    redirect_to decks_path
+    redirect_to dashboard_decks_path
   end
 
   private

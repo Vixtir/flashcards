@@ -29,6 +29,10 @@ ru:
     facebook_login: "Зайти через Facebook"
     profile: "Профиль"
     logout: "Выйти"
+    auth_error: "Пожалуйста войдите или зарегистируйтесь"
+    oauth:
+      success: "Вы вошли через "
+      failed: "Ошибка при попытке зайти через "  
   cards:
     action:
       edit: "Редактировать"

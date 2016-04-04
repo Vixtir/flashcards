@@ -29,6 +29,10 @@ en:
     facebook_login: "Login with Facebook"
     profile: "Profile"
     logout: "Logout"
+    auth_error: "Please login or register"
+    oauth:
+      success: "Logged in from"
+      failed: "Failed to login from"  
   cards:
     action:
       edit: "Edit"

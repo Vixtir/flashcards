@@ -21,25 +21,14 @@
         <%= link_to t('main.brand'), home_root_path, class: 'navbar-brand' %>
       </div>
   <!-- Collection of nav links, forms, and other content for toggling -->
-      <div id="navbarCollapse" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><%= link_to t('main.all_cards'), dashboard_cards_path %></li>
-          <li><%= link_to t('main.add_card'), new_dashboard_card_path %></li>
-          <li><%= link_to t('main.create_deck'), new_dashboard_deck_path %></li>
-          <li><%= link_to t('main.decks'), dashboard_decks_path %></li>
-         <% if current_user %>
-            <li><%= link_to t('main.profile'), edit_dashboard_user_path(current_user),
-                                       id: "profile" %></li>
-            <li><%= link_to t('main.logout'), :dashboard_logout,
-                                       method: :post, id: "logout" %></li>
-          <% else %>
-            <li><%= link_to t('main.facebook_login'),
-                    auth_at_provider_path(:provider => :facebook) %></li>
-          <%= link_to_unless_current "English", locale: "en" %> |
-          <%= link_to_unless_current "Русский", locale: "ru" %>
-          <% end %>
-        </ul>
-      </div>
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <%= link_to t('main.facebook_login'),
+                    home_auth_at_provider_path(:provider => :facebook) %>
+        <%= link_to_unless_current "English", locale: "en" %> |
+        <%= link_to_unless_current "Русский", locale: "ru" %>
+      </ul>
+    </div>  
     </nav>
     <div class="container">
       <% flash.each do |key, value| %>
