@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def not_authenticated
     redirect_to home_login_path
-    flash[:info] = "Please login or register!!!"
+    flash[:info] = t('main.auth_error')
   end
 
   def default_url_options(options = {})
