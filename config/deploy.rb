@@ -3,7 +3,7 @@ server 'http://54.218.27.101/', port: 80, roles: [:web, :app, :db], primary: tru
 
 set :repo_url,        'git@github.com:Vixtir/flashcards.git'
 set :application,     'flashcards'
-set :user,            'deploy'
+set :user,            'paul'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
