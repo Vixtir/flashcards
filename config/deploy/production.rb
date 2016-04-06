@@ -59,4 +59,9 @@
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
 #   }
-server '54.191.54.79', user: 'paul', roles: %w{web app db}
+
+set :stage, :production
+
+role :app, %w{paul@ubuntu@54.191.54.79}
+role :web, %w{paul@ubuntu@54.191.54.79}
+role :db,  %w{paul@ubuntu@54.191.54.79}

@@ -1,5 +1,4 @@
 # Change these
-server 'http://54.218.27.101/', port: 80, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:Vixtir/flashcards.git'
 set :application,     'flashcards'
