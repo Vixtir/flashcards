@@ -12,6 +12,7 @@ config/database.yml
 /log/*
 !/log/.keep
 /tmp
-
+/config/provision/keys
+/settings.yml
 # Ignore application configuration
 /config/application.yml

@@ -1,5 +1,4 @@
-# Change these
-
+# Копирующиеся файлы и директории (между деплоями)
 set :repo_url,        'git@github.com:Vixtir/flashcards.git'
 set :application,     'flashcards'
 set :user,            'paul'
