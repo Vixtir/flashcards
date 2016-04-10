@@ -59,3 +59,8 @@
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
 #   }
+set :stage, :production
+
+role :app, %w{paul@ubuntu@54.191.221.33}
+role :web, %w{paul@ubuntu@54.191.221.33}
+role :db,  %w{paul@ubuntu@54.191.221.33}
