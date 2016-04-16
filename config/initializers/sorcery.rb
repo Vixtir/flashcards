@@ -4,7 +4,7 @@ Rails.application.config.sorcery.configure do |config|
 
   config.facebook.key = ENV["facebook_key"]
   config.facebook.secret = ENV["facebook_secret"]
-  config.facebook.callback_url = "http://http://54.187.29.118//oauth/callback?provider=facebook"
+  config.facebook.callback_url = "http://54.187.29.118/oauth/callback?provider=facebook"
   config.facebook.user_info_mapping = { email: "name" }
   config.facebook.access_permissions = %w[email publish_actions]
   config.facebook.display = "page"
