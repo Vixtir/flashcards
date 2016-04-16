@@ -11,6 +11,7 @@
 		<p id="timer" style="display: none;"></p>
 		<p class="card_id" style="display: none"><%= @card.id %></p>
 		<h1 class="question"><%= @card.original_text %></h1>
+		<%= image_tag(@card.picture_url) if @card.picture?%><br />
 		<input class="answer form-control" id='answer' placeholder="Your answer..."></input><br/>
 		<button class="check_button btn btn-success"><%= t('cards.check')%></button>
 	</div>
