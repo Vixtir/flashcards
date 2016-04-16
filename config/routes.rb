@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|ru/ do
     get '/:locale' => 'home#index'
     root 'dashboard/home#index'
+    post "oauth/callback" => "home/oauths#callback"
+    get "oauth/callback" => "home/oauths#callback"
+    get "oauth/:provider" => "home/oauths#oauth", :as => :auth_at_provider
+    
     namespace :home do
       root "home#index"
-
-      post "oauth/callback" => "oauths#callback"
-      get "oauth/callback" => "oauths#callback" # for use with Github, Facebook
-      get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
       get "login" => "user_sessions#new", :as => :login
 
       resources :users, only: [:new, :create]
