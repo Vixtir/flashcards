@@ -25,7 +25,7 @@ class Dashboard::UsersController < ApplicationController
   def external_user
     @user = User.find(params[:id])
     if @user.external?
-      redirect_to root_path
+      redirect_to dashboard_root_path
     end
   end
 end
