@@ -24,7 +24,7 @@
     <div id="navbarCollapse" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <%= link_to t('main.facebook_login'),
-                    home_auth_at_provider_path(:provider => :facebook) %>
+                    auth_at_provider_path(:provider => :facebook) %>
         <%= link_to_unless_current "English", locale: "en" %> |
         <%= link_to_unless_current "Русский", locale: "ru" %>
       </ul>
