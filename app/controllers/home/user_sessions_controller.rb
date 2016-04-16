@@ -8,7 +8,7 @@ class Home::UserSessionsController < ApplicationController
 
   def create
     if @user = login(params[:email], params[:password])
-      redirect_back_or_to(dashboard_root_path)
+      redirect_to dashboard_root_path
       flash[:success] = t('flash.session.login')
     else
       flash.now[:warning] = t('flash.session.wrong_login')

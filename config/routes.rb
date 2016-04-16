@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|ru/ do
     get '/:locale' => 'home#index'
-    root "dashboard/home#index"
-
+    root 'dashboard/home#index'
     namespace :home do
       root "home#index"
 

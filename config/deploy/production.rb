@@ -62,6 +62,6 @@
 
 set :stage, :production
 
-role :app, %w{paul@ubuntu@54.191.221.33}
-role :web, %w{paul@ubuntu@54.191.221.33}
-role :db,  %w{paul@ubuntu@54.191.221.33}
+role :app, %w{paul@ubuntu@54.187.29.118}
+role :web, %w{paul@ubuntu@54.187.29.118}
+role :db,  %w{paul@ubuntu@54.187.29.118}
