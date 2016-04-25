@@ -3,15 +3,10 @@ require "rails_helper"
 describe "User", type: "feature" do
   let(:user) { FactoryGirl.build(:user) }
 
-  describe "enter on the site first time" do
-    context 'when the user has set their locale to :en' do
-      let(:locale) { :en }
-
-      it "he can change language to russian" do
+  describe "home page" do
+    it "has a brand" do
         visit root_path
-        click_link("Русский")
-        expect(page).to have_content "Флешкарточкер"
-      end
+        expect(page).to have_content I18n.t('main.brand')
     end
 
     it "has a link for registration" do
@@ -33,12 +28,12 @@ describe "User", type: "feature" do
   describe "#registration" do
     it "valid" do
       visit root_path
-      click_link("Регистрация")
+      click_link(I18n.t('not_registred.link'))
       fill_in "user_email", with: user.email
       fill_in "user_password", with: user.password
       fill_in "user_password_confirmation", with: user.password_confirmation
       click_button "Create User"
-      expect(page).to have_content I18n.t('flash.user.create')
+      expect(page).to have_content I18n.t('main.logout')
     end
 
     it "path has html5 validation" do
