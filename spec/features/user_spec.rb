@@ -6,7 +6,6 @@ describe "User", type: "feature" do
   describe "enter on the site first time" do
     it "default english language" do
       visit root_path
-      click_link("English")
       expect(page).to have_content "Flashcards"
     end
 
@@ -18,7 +17,7 @@ describe "User", type: "feature" do
 
     it "has a meassage about login" do
       visit root_path
-      expect(page).to have_content "Please login or register!!!"
+      expect(page).to have_content "Пожалуйста войдите или зарегистируйтесь"
     end
 
     it "has a link for registration" do
