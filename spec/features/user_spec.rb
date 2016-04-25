@@ -4,21 +4,15 @@ describe "User", type: "feature" do
   let(:user) { FactoryGirl.build(:user) }
 
   describe "enter on the site first time" do
-    it "default rus language" do
+    it "default english language" do
       visit root_path
-      expect(page).to have_content "Флешкарточкер"
+      expect(page).to have_content "Flashcards"
     end
 
     it "change language" do
       visit root_path
-      click_link("English")
-      expect(page).to have_content "Flashcards"
-    end
-
-    it "has a meassage about login" do
       click_link("Русский")
-      visit root_path
-      expect(page).to have_content "Пожалуйста войдите или зарегистируйтесь"
+      expect(page).to have_content "Флешкарточкер"
     end
 
     it "has a link for registration" do
