@@ -28,8 +28,10 @@
           <li><%= link_to t('main.create_deck'), new_dashboard_deck_path %></li>
           <li><%= link_to t('main.decks'), dashboard_decks_path %></li>
          <% if current_user %>
+          <% unless current_user.external? %>
             <li><%= link_to t('main.profile'), edit_dashboard_user_path(current_user),
                                        id: "profile" %></li>
+          <% end %>
             <li><%= link_to t('main.logout'), :dashboard_logout,
                                        method: :post, id: "logout" %></li>
           <% else %>

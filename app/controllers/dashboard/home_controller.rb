@@ -13,8 +13,9 @@ class Dashboard::HomeController < ApplicationController
   private
 
   def set_card
-    if current_user.decks.active.any?
-      @deck = current_user.decks.active.first
+    active_deck = current_user.decks.active
+    if active_deck.any? && active_deck.first.cards.need_check.any?
+      @deck = active_deck.first
       @card = @deck.cards.need_check.rand_word.first
     else
       @card = current_user.cards.need_check.rand_word.first
