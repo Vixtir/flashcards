@@ -13,7 +13,6 @@ class Deck < ActiveRecord::Base
   end
 
   def activate
-    #Deck.update_all(status: :inactive)
     user.decks.update_all(status: :inactive)
     self.status = "active"
   end

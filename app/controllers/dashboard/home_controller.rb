@@ -2,8 +2,7 @@ class Dashboard::HomeController < ApplicationController
   before_action :require_login
   before_action :set_card, only: [:index]
 
-  def index
-  end
+  def index; end
 
   def check
     update_card

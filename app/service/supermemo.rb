@@ -18,14 +18,16 @@ class Supermemo
     grade < 3 ? 1 : i + 1
   end
 
-  def interval(i, ef, grade)
-    return 0 if grade < 3
+  def add_day(i, ef)
+    if i < 3
+        i == 1 ? 1.day : 6.day
+    else
+        ((i - 1) * ef).round.day
+    end    
+  end
 
-    case i
-    when 1 then 1.day
-    when 2 then 6.day
-    else ((i - 1) * ef).round.day
-    end
+  def interval(i, ef, grade)
+    grade < 3 ? 0 : add_day(i, ef)
   end
 
   def next_interval(i, ef, grade)
