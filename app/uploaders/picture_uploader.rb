@@ -12,7 +12,7 @@ class PictureUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process resize_to_fit:  [360, 360]
+  process resize_to_fit:  [180, 180]
 
   def extension_white_list
     %w(jpg jpeg gif png)

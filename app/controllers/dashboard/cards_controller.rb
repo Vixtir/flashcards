@@ -25,7 +25,9 @@ class Dashboard::CardsController < ApplicationController
     @cards = current_user.cards
   end
 
-  def edit; end
+  def edit
+    @decks = current_user.decks
+  end
 
   def update
     if @card.update(card_params)
